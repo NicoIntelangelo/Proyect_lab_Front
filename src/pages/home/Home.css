@@ -1,0 +1,19 @@
+.info-section {
+    position: relative;
+    padding: 40px 0 40px 0;
+    background-color: black;
+    color: white;
+}
+
+.info-section-container {
+}
+
+.trend-products {
+    position: relative;
+}
+
+.trend-products-container {
+    display: flex;
+    /*justify-content: space-between; */
+    align-items: center;
+}

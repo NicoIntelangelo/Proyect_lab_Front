@@ -1,0 +1,59 @@
+.pc-container {
+    width: 300px;
+    height: 400px;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 60% auto auto auto auto;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+
+    -webkit-box-shadow: 3px 10.5px 9px 1px #dddddd;
+    -moz-box-shadow: 3px 10.5px 9px 1px #dddddd;
+    box-shadow: 3px 10.5px 9px 1px #dddddd;
+
+    border-radius: 15px;
+
+    margin: 10px;
+}
+
+.pc-image {
+    grid-row: 1;
+    grid-column: span 2;
+
+    max-height: 100%;
+}
+.stock {
+    grid-row: 2;
+    grid-column: span 2;
+
+    color: rgb(0, 0, 0);
+}
+
+.title {
+    grid-row: 3;
+    grid-column: span 2;
+
+    margin: 5px;
+}
+
+.price {
+    grid-row: 4;
+    grid-column: 2;
+}
+
+.price-compare {
+    grid-row: 4;
+    grid-column: 1;
+
+    margin-right: 10px;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.buy-button {
+    grid-row: 5;
+    grid-column: span 2;
+}
