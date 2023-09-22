@@ -39,72 +39,65 @@ const Header = () => {
                             navbarScroll
                         >
                             <Nav.Link
-                                href="#action1"
-                                style={{
-                                    color: "#66a0cf",
-                                }}
+                                href="/home"
+                                // style={{
+                                //     color: "#66a0cf",
+                                // }}
                             >
                                 Inicio
                             </Nav.Link>
                             <Nav.Link
-                                href="#action2"
-                                style={{
-                                    color: "#66a0cf",
-                                }}
+                                href="/shop"
+                                // style={{
+                                //     color: "#66a0cf",
+                                // }}
                             >
                                 New
                             </Nav.Link>
-                            <NavDropdown
-                                title="Shop"
-                                //id="navbarScrollingDropdown"
-                                style={{
-                                    color: "#66a0cf",
-                                }}
-                            >
+                            <NavDropdown title="Shop">
                                 <NavDropdown.Item
-                                    href="#action3"
-                                    style={{
-                                        color: "#66a0cf",
-                                    }}
+                                    href="/shop"
+                                    // style={{
+                                    //     color: "#66a0cf",
+                                    // }}
                                 >
-                                    Action
+                                    Shop
                                 </NavDropdown.Item>
                                 <NavDropdown.Item
                                     href="#action4"
-                                    style={{
-                                        color: "#66a0cf",
-                                    }}
+                                    // style={{
+                                    //     color: "#66a0cf",
+                                    // }}
                                 >
                                     Another action
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item
                                     href="#action5"
-                                    style={{
-                                        color: "#66a0cf",
-                                    }}
+                                    // style={{
+                                    //     color: "#66a0cf",
+                                    // }}
                                 >
                                     Something else here
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link
-                                href="#"
-                                disabled
-                                style={{
-                                    color: "#66a0cf",
-                                }}
-                            >
-                                Shop
-                            </Nav.Link>
                         </Nav>
                         <Nav className="my-2 my-lg-2 me-3">
                             <Nav.Link
-                                href="#action1"
-                                style={{
-                                    color: "#66a0cf",
-                                }}
+                                href="/ingresar"
+                                // style={{
+                                //     color: "#66a0cf",
+                                // }}
                             >
                                 Ingresar
+                            </Nav.Link>
+                            <Nav.Link
+                                href="/ingresar"
+                                // style={{
+                                //     color: "#66a0cf",
+                                // }}
+                            >
+                                Carrito
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
