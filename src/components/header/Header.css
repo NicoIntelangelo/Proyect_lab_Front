@@ -3,6 +3,6 @@
 }
 .themeSwitch {
     position: fixed;
-    bottom: 30px; /* Distancia desde el borde inferior */
-    right: 30px; /* Distancia desde el borde derecho */
+    bottom: 30px;
+    right: 30px;
 }

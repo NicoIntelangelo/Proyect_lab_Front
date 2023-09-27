@@ -26,11 +26,11 @@ function App() {
             element: <Home />,
         },
         {
-            path: "/shop",
+            path: "/shop/:category",
             element: <Shop />,
         },
         {
-            path: "/*",
+            path: "*",
             element: <PageNotFound />,
         },
     ]);

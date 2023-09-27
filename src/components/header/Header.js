@@ -17,12 +17,11 @@ const Header = () => {
                     backgroundColor: "#FFFFFF",
                     color: "#66a0cf",
                 }}
-                expand="lg"
-                //className="bg-body-tertiary"
+                expand="sm"
                 sticky="top"
             >
                 <Container fluid>
-                    <Navbar.Brand href="#">
+                    <Navbar.Brand href="/home">
                         <img
                             alt=""
                             src="https://acdn.mitiendanube.com/stores/219/431/themes/common/logo-1635651913-1677604746-9d2e7d826bcdb1506200625fca2f2b351677604747-320-0.webp"
@@ -38,67 +37,23 @@ const Header = () => {
                             style={{ maxHeight: "100px" }}
                             navbarScroll
                         >
-                            <Nav.Link
-                                href="/home"
-                                // style={{
-                                //     color: "#66a0cf",
-                                // }}
-                            >
-                                Inicio
-                            </Nav.Link>
-                            <Nav.Link
-                                href="/shop"
-                                // style={{
-                                //     color: "#66a0cf",
-                                // }}
-                            >
-                                New
-                            </Nav.Link>
-                            <NavDropdown title="Shop">
-                                <NavDropdown.Item
-                                    href="/shop"
-                                    // style={{
-                                    //     color: "#66a0cf",
-                                    // }}
-                                >
+                            <Nav.Link href="/shop/all">Shop</Nav.Link>
+                            <NavDropdown title="Categorias">
+                                <NavDropdown.Item href="/shop">
                                     Shop
                                 </NavDropdown.Item>
-                                <NavDropdown.Item
-                                    href="#action4"
-                                    // style={{
-                                    //     color: "#66a0cf",
-                                    // }}
-                                >
+                                <NavDropdown.Item href="#action4">
                                     Another action
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item
-                                    href="#action5"
-                                    // style={{
-                                    //     color: "#66a0cf",
-                                    // }}
-                                >
+                                <NavDropdown.Item href="#action5">
                                     Something else here
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav className="my-2 my-lg-2 me-3">
-                            <Nav.Link
-                                href="/ingresar"
-                                // style={{
-                                //     color: "#66a0cf",
-                                // }}
-                            >
-                                Ingresar
-                            </Nav.Link>
-                            <Nav.Link
-                                href="/ingresar"
-                                // style={{
-                                //     color: "#66a0cf",
-                                // }}
-                            >
-                                Carrito
-                            </Nav.Link>
+                            <Nav.Link href="/ingresar">Ingresar</Nav.Link>
+                            <Nav.Link href="/ingresar">Carrito</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                     <div className="themeSwitch">
