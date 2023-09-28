@@ -1,10 +1,10 @@
 .pc-container {
     width: 300px;
-    height: 400px;
+    height: 510px;
 
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 60% auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
     justify-content: center;
     justify-items: center;
     align-content: center;
@@ -23,17 +23,11 @@
     grid-row: 1;
     grid-column: span 2;
 
-    max-height: 100%;
-}
-.stock {
-    grid-row: 2;
-    grid-column: span 2;
-
-    color: rgb(0, 0, 0);
+    max-height: 370px;
 }
 
 .title {
-    grid-row: 3;
+    grid-row: 2;
     grid-column: span 2;
 
     margin: 5px;
@@ -42,12 +36,12 @@
 }
 
 .price {
-    grid-row: 4;
+    grid-row: 3;
     grid-column: 2;
 }
 
 .price-compare {
-    grid-row: 4;
+    grid-row: 3;
     grid-column: 1;
 
     margin-right: 10px;
@@ -56,6 +50,6 @@
 }
 
 .buy-button {
-    grid-row: 5;
+    grid-row: 4;
     grid-column: span 2;
 }

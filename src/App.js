@@ -13,6 +13,7 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Shop from "./pages/shop/Shop";
 import Register from "./pages/Register/Register";
+import ProductDetail from "./components/productDetail/ProductDetail";
 
 function App() {
     const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
         {
             path: "/shop/:category",
             element: <Shop />,
+        },
+        {
+            path: "/detail/:id",
+            element: <ProductDetail />,
         },
         {
             path: "*",

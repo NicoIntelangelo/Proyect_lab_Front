@@ -1,0 +1,25 @@
+.ib-container {
+    /* background-color: black;
+    color: white; */
+
+    height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px 20px 0px;
+}
+
+.ib-container > div {
+    flex: 1;
+    min-width: 300px;
+    margin: 10px;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+}
+
+@media (max-width: 768px) {
+    .ib-container > div {
+        flex: 100%;
+        min-width: auto;
+    }
+}

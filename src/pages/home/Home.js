@@ -4,19 +4,19 @@ import HomeCarousel from "../../components/Carousel/HomeCarousel";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useEffect, useState } from "react";
 import CardSlider from "../../components/cardSlider/CardSlider";
+import InfoBaner from "../../components/infoBaner/InfoBaner";
 
 const Home = () => {
     const [newProducts, setNewProducts] = useState([]);
     useEffect(() => {
-        fetch("https://6511a862b8c6ce52b394da9b.mockapi.io/product", {
+        fetch("http://localhost:8080/products/new", {
             headers: {
                 Accept: "application/json",
             },
         })
             .then((response) => response.json())
             .then((products) => {
-                const fiteredProducts = products.filter((p) => p.new === true);
-                setNewProducts(fiteredProducts);
+                setNewProducts(products);
             })
             .catch((error) => {
                 console.log(error);
@@ -25,11 +25,12 @@ const Home = () => {
     const newProductsList = newProducts.map((product) => (
         <ProductCard
             key={product.id}
+            id={product.id}
             price={product.price}
             discount={product.discount}
             brand={product.brand}
             productName={product.productName}
-            image={product.image}
+            image="https://acdn.mitiendanube.com/stores/219/431/products/824f0f4a-d566-4f40-812e-d2c7d9c13ac5-1910a0efe81b0c4db216935215790830-480-0.webp"
         />
     ));
 
@@ -37,12 +38,14 @@ const Home = () => {
         <div>
             <HomeCarousel />
             <section class="info-section">
-                <div class="info-section-container"></div>
+                <InfoBaner />
             </section>
-            {/* <section class="trend-products">
-                <div class="trend-products-container">{newProductsList}</div>
-            </section> */}
-            <CardSlider>{newProductsList}</CardSlider>
+            <section class="trend-products">
+                <h2 class="new-in">New In</h2>
+                <div class="trend-products-container">
+                    <CardSlider>{newProductsList}</CardSlider>
+                </div>
+            </section>
         </div>
     );
 };

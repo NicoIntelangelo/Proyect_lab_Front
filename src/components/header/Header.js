@@ -9,7 +9,9 @@ import "./Header.css";
 const Header = () => {
     return (
         <>
-            <p className="text-center mt-2 mb-2">Or right-aligned</p>
+            <p className="text-center mt-2 mb-2">
+                6 Cuotas sin interes de Lunes a Miércoles con todos los Bancos
+            </p>
 
             <Navbar
                 style={{
@@ -39,15 +41,18 @@ const Header = () => {
                         >
                             <Nav.Link href="/shop/all">Shop</Nav.Link>
                             <NavDropdown title="Categorias">
-                                <NavDropdown.Item href="/shop">
-                                    Shop
+                                <NavDropdown.Item href="/shop/zapatillas">
+                                    zapatillas
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">
-                                    Another action
+                                <NavDropdown.Item href="/shop/buzos">
+                                    buzos
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="/shop/remeras">
+                                    Remeras
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
+                                <NavDropdown.Item href="/shop/new">
+                                    New In
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
