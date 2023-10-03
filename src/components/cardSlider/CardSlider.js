@@ -11,8 +11,12 @@ import "./CardSlider.css";
 
 // import required modules
 import { Navigation, Pagination, Keyboard } from "swiper/modules";
+import { useContext } from "react";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const CardSlider = ({ children }) => {
+    const { theme } = useContext(ThemeContext);
+
     const width = window.innerWidth;
     var slides = 0;
 
@@ -46,7 +50,17 @@ const CardSlider = ({ children }) => {
                 className="mySwiper"
             >
                 {children.map((child) => {
-                    return <SwiperSlide>{child}</SwiperSlide>;
+                    return (
+                        <SwiperSlide
+                            class={
+                                theme === "dark"
+                                    ? "swiper-slide swiper-slide-dark"
+                                    : "swiper-slide"
+                            }
+                        >
+                            {child}
+                        </SwiperSlide>
+                    );
                 })}
             </Swiper>
         </>

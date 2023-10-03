@@ -4,3 +4,8 @@
     grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     gap: 20px;
 }
+
+.products-grid-dark {
+    background-color: black;
+    color: white;
+}

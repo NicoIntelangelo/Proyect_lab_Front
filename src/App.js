@@ -1,6 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NextUIProvider } from "@nextui-org/react";
 
 import {
     Navigate,
@@ -42,10 +41,8 @@ function App() {
 
     return (
         <div>
-            <NextUIProvider>
-                <Header />
-                <RouterProvider router={router} />
-            </NextUIProvider>
+            <Header />
+            <RouterProvider router={router} />
         </div>
     );
 }

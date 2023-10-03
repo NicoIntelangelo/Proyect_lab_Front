@@ -9,6 +9,7 @@
         "@testing-library/user-event": "^13.5.0",
         "bootstrap": "^5.3.1",
         "framer-motion": "^10.16.4",
+        "next-themes": "^0.2.1",
         "react": "^18.2.0",
         "react-bootstrap": "^2.8.0",
         "react-card-slider-component": "^1.0.9",
@@ -16,6 +17,7 @@
         "react-router-dom": "^6.16.0",
         "react-scripts": "5.0.1",
         "swiper": "^10.3.0",
+        "use-dark-mode-ts": "^1.0.2",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

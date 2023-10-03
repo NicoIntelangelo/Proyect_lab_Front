@@ -6,10 +6,13 @@ import "./Shop.css";
 
 import Products from "../../components/products/Products";
 import ProductsFilter from "../../components/productsFilter/ProductsFilter";
+import { useContext } from "react";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
     const [brand, setBrand] = React.useState([]);
+    const { theme } = useContext(ThemeContext);
 
     const params = useParams();
 
@@ -30,7 +33,13 @@ const Shop = () => {
 
     return (
         <>
-            <div class="shop-container">
+            <div
+                class={
+                    theme === "dark"
+                        ? "shop-container shop-container-dark dark"
+                        : "shop-container"
+                }
+            >
                 <ProductsFilter brand={brand} setBrand={setBrand} />
                 <Divider orientation="vertical" />
                 <Products products={products} brandfilter={brand} />

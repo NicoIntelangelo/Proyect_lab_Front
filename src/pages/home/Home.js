@@ -2,12 +2,17 @@ import "./Home.css";
 
 import HomeCarousel from "../../components/Carousel/HomeCarousel";
 import ProductCard from "../../components/productCard/ProductCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CardSlider from "../../components/cardSlider/CardSlider";
 import InfoBaner from "../../components/infoBaner/InfoBaner";
+import Spinner1 from "../../components/spinner/Spinner1";
+import { ThemeContext } from "../../services/theme/theme.context";
+import { Divider } from "@nextui-org/react";
 
 const Home = () => {
     const [newProducts, setNewProducts] = useState([]);
+    const { theme } = useContext(ThemeContext);
+
     useEffect(() => {
         fetch("http://localhost:8080/products/new", {
             headers: {
@@ -35,17 +40,29 @@ const Home = () => {
     ));
 
     return (
-        <div>
+        <div
+            class={
+                theme === "dark"
+                    ? "h-container h-container-dark"
+                    : "h-container"
+            }
+        >
             <HomeCarousel />
+            <Divider class={theme === "dark" ? "dark" : "light"} />
             <section class="info-section">
                 <InfoBaner />
             </section>
-            <section class="trend-products">
-                <h2 class="new-in">New In</h2>
-                <div class="trend-products-container">
-                    <CardSlider>{newProductsList}</CardSlider>
-                </div>
-            </section>
+            <Divider class={theme === "dark" ? "dark" : "light"} />
+            {newProductsList.length > 0 ? (
+                <section class="trend-products">
+                    <h2 class="new-in">New In</h2>
+                    <div class="trend-products-container">
+                        <CardSlider>{newProductsList}</CardSlider>
+                    </div>
+                </section>
+            ) : (
+                <Spinner1 />
+            )}
         </div>
     );
 };
