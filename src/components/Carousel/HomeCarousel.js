@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Carousel } from "react-bootstrap";
+import { ThemeContext } from "../../services/theme/theme.context";
+import { useContext } from "react";
 
 const HomeCarousel = () => {
+    const { theme } = useContext(ThemeContext);
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex) => {
@@ -17,7 +20,7 @@ const HomeCarousel = () => {
             <Carousel
                 activeIndex={index}
                 onSelect={handleSelect}
-                variant="light"
+                variant={theme === "dark" ? "dark" : "light"}
             >
                 <Carousel.Item>
                     <img
@@ -41,6 +44,19 @@ const HomeCarousel = () => {
                     />
                     <Carousel.Caption>
                         <h3>Winter Sale</h3>
+                        <p>Promos con todas las tarjetas</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                    <img
+                        onClick={print}
+                        alt="."
+                        class="img-fluid"
+                        src="https://acdn.mitiendanube.com/stores/219/431/themes/rio/1-slide-1696373909121-8380962305-4fb8e8c81dda1969c08a7200e2a1b80d1696373926-1920-1920.webp?1155540372"
+                    />
+                    <Carousel.Caption>
+                        <h3>New Season</h3>
                         <p>Promos con todas las tarjetas</p>
                     </Carousel.Caption>
                 </Carousel.Item>

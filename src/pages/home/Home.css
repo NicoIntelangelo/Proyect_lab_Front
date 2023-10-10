@@ -13,6 +13,7 @@
 
 .trend-products {
     position: relative;
+    min-height: 100px;
 }
 
 .new-in {

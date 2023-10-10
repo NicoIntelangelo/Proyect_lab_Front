@@ -24,7 +24,7 @@ const Products = ({ products, brandfilter }) => {
                 discount={product.discount}
                 brand={product.brand}
                 productName={product.productName}
-                image="https://acdn.mitiendanube.com/stores/219/431/products/824f0f4a-d566-4f40-812e-d2c7d9c13ac5-1910a0efe81b0c4db216935215790830-480-0.webp"
+                image="https://acdn.mitiendanube.com/stores/219/431/products/4b258e91-9688-4d38-b29b-560682df4d1a-8dd8ca11ac2f8f738e16935205241103-480-0.webp"
             />
         ));
     } else {

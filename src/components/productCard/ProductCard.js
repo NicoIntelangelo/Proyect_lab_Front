@@ -26,8 +26,18 @@ const ProductCard = ({ price, discount, brand, productName, image, id }) => {
             <h1 class="title">
                 {brand} {productName}
             </h1>
-            <h4 class="price">${priceDiscount.toFixed(2)}</h4>
-            <h5 class="price-compare">${price}</h5>
+
+            {discount > 0 ? (
+                <>
+                    <h4 className="price">${priceDiscount.toFixed(2)}</h4>
+                    <h5 className="price-compare">${price.toFixed(2)}</h5>
+                </>
+            ) : (
+                <>
+                    <h4 className="price-no-discount">${price.toFixed(2)}</h4>
+                </>
+            )}
+
             <div class="buy-button">
                 <Link to={productDetail}>
                     <Button
