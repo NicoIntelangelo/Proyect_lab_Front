@@ -7,6 +7,8 @@ import ThemeSwitch from "../themeSwitch/ThemeSwitch";
 import "./Header.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+//import { NavLink } from "react-bootstrap";
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
@@ -44,7 +46,7 @@ const Header = () => {
                 sticky="top"
             >
                 <Container fluid>
-                    <Navbar.Brand href="/home">
+                    <Navbar.Brand as={Link} to="/home">
                         <img
                             id={theme === "dark" ? "logo-dark" : ""}
                             alt=""
@@ -73,7 +75,8 @@ const Header = () => {
                             navbarScroll
                         >
                             <Nav.Link
-                                href="/shop/all"
+                                as={Link}
+                                to="/shop/all"
                                 style={
                                     theme === "dark"
                                         ? {
@@ -96,7 +99,8 @@ const Header = () => {
                                 title="Categorias"
                             >
                                 <NavDropdown.Item
-                                    href="/shop/zapatillas"
+                                    as={Link}
+                                    to="/shop/zapatillas"
                                     style={
                                         theme === "dark"
                                             ? {
@@ -113,7 +117,8 @@ const Header = () => {
                                 </NavDropdown.Item>
 
                                 <NavDropdown.Item
-                                    href="/shop/buzos"
+                                    as={Link}
+                                    to="/shop/buzos"
                                     style={
                                         theme === "dark"
                                             ? {
@@ -130,7 +135,8 @@ const Header = () => {
                                 </NavDropdown.Item>
 
                                 <NavDropdown.Item
-                                    href="/shop/remeras"
+                                    as={Link}
+                                    to="/shop/remeras"
                                     style={
                                         theme === "dark"
                                             ? {
@@ -161,7 +167,8 @@ const Header = () => {
                                 />
 
                                 <NavDropdown.Item
-                                    href="/shop/new"
+                                    as={Link}
+                                    to="/shop/new"
                                     style={
                                         theme === "dark"
                                             ? {
@@ -180,7 +187,8 @@ const Header = () => {
                         </Nav>
                         <Nav className="my-2 my-lg-2 me-3">
                             <Nav.Link
-                                href="/ingresar"
+                                as={Link}
+                                to="/ingresar"
                                 style={
                                     theme === "dark"
                                         ? {
@@ -194,7 +202,8 @@ const Header = () => {
                                 Ingresar
                             </Nav.Link>
                             <Nav.Link
-                                href="/ingresar"
+                                as={Link}
+                                to="/ingresar"
                                 style={
                                     theme === "dark"
                                         ? {

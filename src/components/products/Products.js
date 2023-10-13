@@ -13,7 +13,6 @@ const Products = ({ products, brandfilter }) => {
         var brandProducts = products.filter((p) => p.brand === brandfilter[i]);
         filteredProducts = filteredProducts.concat(brandProducts);
     }
-    console.log(filteredProducts);
 
     if (brandfilter.length > 0) {
         var productsList = filteredProducts.map((product) => (
