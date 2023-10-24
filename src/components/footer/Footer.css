@@ -1,0 +1,22 @@
+.dark-theme {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.light-theme {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.divider {
+  border-top: 1px solid #bbb;
+}
+
+.social {
+  --tw-text-opacity: 1;
+  color: rgb(8 145 178 / var(--tw-text-opacity));
+  text-decoration-line: none;
+}
+.social:hover {
+  text-decoration-line: underline;
+}
