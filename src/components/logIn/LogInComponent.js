@@ -8,11 +8,14 @@ import { EyeFilledIcon } from "../../assets/icons/EyeFilledIcon";
 
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
+import { useState } from "react";
 
-const LogInComponent = () => {
+const LogInComponent = ({ toggleRegisterLogin }) => {
     const { theme } = useContext(ThemeContext);
 
-    const [isVisible, setIsVisible] = React.useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     return (
@@ -25,19 +28,19 @@ const LogInComponent = () => {
         >
             <h2>Ingresar</h2>
             <div class="l-input-container">
-                <div id="email">
+                <div id="l-email">
                     <Input
                         label="Email"
                         variant="bordered"
-                        placeholder="Enter your email"
+                        placeholder="Ingrese su Email"
                         className="max-w-xs"
                     />
                 </div>
-                <div id="password">
+                <div id="l-password">
                     <Input
-                        label="Password"
+                        label="Contraseña"
                         variant="bordered"
-                        placeholder="Enter your password"
+                        placeholder="Ingrese su Contraseña"
                         endContent={
                             <button
                                 className="focus:outline-none"
@@ -55,13 +58,17 @@ const LogInComponent = () => {
                         className="max-w-xs"
                     />
                 </div>
-                <div id="button"></div>
+            </div>
+            <div class="l-buttons">
                 <Button
                     radius="full"
-                    className="col-span-2 row-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg"
+                    className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
                 >
                     Ingresar
                 </Button>
+                <p className=" button" onClick={toggleRegisterLogin}>
+                    Registrarme
+                </p>
             </div>
         </div>
     );

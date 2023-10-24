@@ -1,6 +1,6 @@
 .l-container {
     width: 350px;
-    height: 350px;
+    height: auto;
 
     border-color: rgb(0, 0, 0);
     border-width: 1px;
@@ -8,10 +8,13 @@
 
     padding: 15px;
     text-align: center;
+
+    align-items: center;
 }
 
 .l-container-dark {
     border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 h2 {
@@ -22,13 +25,35 @@ h2 {
     margin-top: 40px;
 }
 
-#email {
+#l-email {
     margin-top: 40px;
 }
 
-#password {
+#l-password {
     margin-top: 20px;
 }
-#button {
-    margin-top: 40px;
+
+.l-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 10px;
+}
+
+p {
+    font-size: 15px;
+    font-weight: 300;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+p:hover {
+    font-weight: 400;
 }

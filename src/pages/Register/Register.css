@@ -3,9 +3,16 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    top: 10px;
+    position: relative;
 }
 
 .r-container-dark {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+}
+
+.r-sub-container {
+    position: absolute;
+    top: 40px;
 }
