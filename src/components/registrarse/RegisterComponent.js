@@ -59,7 +59,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
                         variant="bordered"
                         placeholder="Crear su nombre de usuario"
                         className="max-w-xs"
-                        onChange={changeEmailHandler}
+                        onChange={changeUserNameHandler}
                     />
                 </div>
                 <div id="r-email">
@@ -68,7 +68,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
                         variant="bordered"
                         placeholder="Ingresar su Email"
                         className="max-w-xs"
-                        onChange={changeUserNameHandler}
+                        onChange={changeEmailHandler}
                     />
                 </div>
                 <div id="r-password">

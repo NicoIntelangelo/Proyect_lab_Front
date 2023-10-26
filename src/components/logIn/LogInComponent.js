@@ -10,12 +10,29 @@ import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useState } from "react";
 
-const LogInComponent = ({ toggleRegisterLogin }) => {
+const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
     const { theme } = useContext(ThemeContext);
 
     const [isVisible, setIsVisible] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const changeEmailHandler = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const changePasswordHandler = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const authenticateUser = (event) => {
+        event.preventDefault();
+        const authUser = {
+            email: email,
+            password: password,
+        };
+        authentication(authUser);
+    };
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     return (
@@ -34,6 +51,7 @@ const LogInComponent = ({ toggleRegisterLogin }) => {
                         variant="bordered"
                         placeholder="Ingrese su Email"
                         className="max-w-xs"
+                        onChange={changeEmailHandler}
                     />
                 </div>
                 <div id="l-password">
@@ -56,11 +74,13 @@ const LogInComponent = ({ toggleRegisterLogin }) => {
                         }
                         type={isVisible ? "text" : "password"}
                         className="max-w-xs"
+                        onChange={changePasswordHandler}
                     />
                 </div>
             </div>
             <div class="l-buttons">
                 <Button
+                    onClick={authenticateUser}
                     radius="full"
                     className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
                 >
