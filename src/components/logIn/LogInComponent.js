@@ -86,7 +86,7 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                 >
                     Ingresar
                 </Button>
-                <p className=" button" onClick={toggleRegisterLogin}>
+                <p className=" button l-p" onClick={toggleRegisterLogin}>
                     Registrarme
                 </p>
             </div>

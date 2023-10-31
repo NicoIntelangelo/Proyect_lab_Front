@@ -44,7 +44,7 @@ h2 {
     margin-top: 10px;
 }
 
-p {
+.l-p {
     font-size: 15px;
     font-weight: 300;
     -webkit-touch-callout: none;
@@ -54,6 +54,6 @@ p {
     -ms-user-select: none;
     user-select: none;
 }
-p:hover {
+.l-p:hover {
     font-weight: 400;
 }

@@ -124,7 +124,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
                 >
                     Registrarme
                 </Button>
-                <p className=" button" onClick={toggleRegisterLogin}>
+                <p className=" button r-p" onClick={toggleRegisterLogin}>
                     Ingresar
                 </p>
             </div>
