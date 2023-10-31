@@ -27,6 +27,12 @@ function App() {
                 {
                     path: "/home",
                     element: <Home />,
+                    // element: (
+                    //     <>
+                    //         <Home />
+                    //         <Footer />
+                    //     </>
+                    // ),
                 },
                 {
                     path: "/shop/:category",
