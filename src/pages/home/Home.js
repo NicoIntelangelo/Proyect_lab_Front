@@ -54,16 +54,15 @@ const Home = () => {
             </section>
             <Divider class={theme === "dark" ? "dark" : "light"} />
             {newProductsList.length > 0 ? (
-                <section class="trend-products">
+                <div class="trend-products">
                     <h2 class="new-in">New In</h2>
                     <div class="trend-products-container">
                         <CardSlider>{newProductsList}</CardSlider>
                     </div>
-                </section>
+                </div>
             ) : (
                 <Spinner1 />
             )}
-            <Divider class={theme === "dark" ? "dark" : "light"} />
         </div>
     );
 };

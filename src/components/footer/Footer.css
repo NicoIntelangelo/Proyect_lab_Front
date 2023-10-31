@@ -16,3 +16,7 @@
 .fot-social:hover {
     text-decoration-line: underline;
 }
+
+.dark-fot-divider {
+    margin-top: 0px;
+}

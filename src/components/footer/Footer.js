@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import "./Footer.css";
+import { Divider } from "@nextui-org/react";
 
 const Footer = () => {
     const { theme } = useContext(ThemeContext);
@@ -11,6 +12,9 @@ const Footer = () => {
             <div
                 class={theme === "dark" ? "fot-dark-theme" : "fot-light-theme"}
             >
+                <Divider
+                    class={theme === "dark" ? "dark dark-fot-divider" : "light"}
+                />
                 <footer class="pt-3">
                     <div class="container-fluid text-center text-md-left">
                         <div class="row">
