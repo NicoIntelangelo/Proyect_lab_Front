@@ -35,7 +35,7 @@ const Home = () => {
             discount={product.discount}
             brand={product.brand}
             productName={product.productName}
-            image="https://acdn.mitiendanube.com/stores/219/431/products/824f0f4a-d566-4f40-812e-d2c7d9c13ac5-1910a0efe81b0c4db216935215790830-480-0.webp"
+            image={product.image}
         />
     ));
 
