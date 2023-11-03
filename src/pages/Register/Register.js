@@ -1,7 +1,7 @@
 import React from "react";
 import "./Register.css";
 
-import RegisterComponent from "../../components/registrarse/RegisterComponent";
+import RegisterComponent from "../../components/registerComponent/RegisterComponent";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import LogInComponent from "../../components/logIn/LogInComponent";

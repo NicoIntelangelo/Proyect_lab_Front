@@ -1,0 +1,22 @@
+.ap-container {
+    background-color: white;
+    color: black;
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ap-container-dark {
+    background-color: black;
+    color: white;
+}
+
+.ap-sub-container {
+    position: absolute;
+    top: 120px;
+}

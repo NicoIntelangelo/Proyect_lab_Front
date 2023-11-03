@@ -13,6 +13,7 @@ import Shop from "./pages/shop/Shop";
 import Register from "./pages/Register/Register";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import MainLayout from "./components/mainLayout/MainLayout";
+import AdminPage from "./pages/admin/AdminPage";
 
 function App() {
     const router = createBrowserRouter([
@@ -27,12 +28,6 @@ function App() {
                 {
                     path: "/home",
                     element: <Home />,
-                    // element: (
-                    //     <>
-                    //         <Home />
-                    //         <Footer />
-                    //     </>
-                    // ),
                 },
                 {
                     path: "/shop/:category",
@@ -41,6 +36,10 @@ function App() {
                 {
                     path: "/detail/:id",
                     element: <ProductDetail />,
+                },
+                {
+                    path: "/admin",
+                    element: <AdminPage />,
                 },
                 {
                     path: "*",
