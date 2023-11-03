@@ -50,7 +50,7 @@ const AdminPage = () => {
                 <h1 className="">AdminPage</h1>
                 <AddProduct
                     onProductAdded={addProductHandler}
-                    className="mt-10"
+                    //className="mt-10"
                 />
             </div>
         </div>

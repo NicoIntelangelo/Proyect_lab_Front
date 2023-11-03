@@ -2,7 +2,7 @@
     background-color: white;
     color: black;
 
-    height: 100vh;
+    height: auto;
 
     display: flex;
     flex-direction: column;
@@ -17,6 +17,4 @@
 }
 
 .ap-sub-container {
-    position: absolute;
-    top: 120px;
 }

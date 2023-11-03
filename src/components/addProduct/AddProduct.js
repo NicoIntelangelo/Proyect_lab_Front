@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { ThemeContext } from "../../services/theme/theme.context";
+import { useContext } from "react";
+
 import "./AddProduct.css";
 import {
     Button,
@@ -12,9 +15,10 @@ import {
 import { categories } from "../../assets/productConfig/Categories";
 
 export const AddProduct = ({ onProductAdded }) => {
+    const { theme } = useContext(ThemeContext);
+
     const [sizesList, setSizesList] = React.useState([]);
     const sizes = sizesList.join(", ");
-
     const [brand, setBrand] = useState("");
     const [productName, setProductName] = useState("");
     const [category, setCategory] = useState("");
@@ -60,7 +64,18 @@ export const AddProduct = ({ onProductAdded }) => {
     };
 
     return (
-        <div className="addp-container">
+        <div
+            className="addp-container"
+            style={
+                theme === "dark"
+                    ? {
+                          borderColor: "#ffffff",
+                      }
+                    : {
+                          borderColor: "#000000",
+                      }
+            }
+        >
             <h2 className="mt-0 ">Cargar Producto</h2>
 
             <div className="ap-product-name">

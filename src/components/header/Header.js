@@ -152,7 +152,24 @@ const Header = () => {
                                     New In
                                 </NavDropdown.Item>
                             </NavDropdown>
+
+                            <Nav.Link
+                                as={Link}
+                                to="/admin"
+                                style={
+                                    theme === "dark"
+                                        ? {
+                                              color: "#ffffff",
+                                          }
+                                        : {
+                                              color: "#000000",
+                                          }
+                                }
+                            >
+                                Admin
+                            </Nav.Link>
                         </Nav>
+
                         <Nav className="my-2 my-lg-2 me-3">
                             <Nav.Link
                                 as={Link}
