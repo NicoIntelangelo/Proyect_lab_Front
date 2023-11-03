@@ -8,7 +8,7 @@ import "./Header.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-//import { NavLink } from "react-bootstrap";
+import { categories } from "../../assets/productConfig/Categories";
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
@@ -98,59 +98,27 @@ const Header = () => {
                                 }
                                 title="Categorias"
                             >
-                                <NavDropdown.Item
-                                    as={Link}
-                                    to="/shop/zapatillas"
-                                    style={
-                                        theme === "dark"
-                                            ? {
-                                                  backgroundColor: "#000000",
-                                                  color: "#ffffff",
-                                              }
-                                            : {
-                                                  backgroundColor: "#ffffff",
-                                                  color: "#000000",
-                                              }
-                                    }
-                                >
-                                    zapatillas
-                                </NavDropdown.Item>
-
-                                <NavDropdown.Item
-                                    as={Link}
-                                    to="/shop/buzos"
-                                    style={
-                                        theme === "dark"
-                                            ? {
-                                                  backgroundColor: "#000000",
-                                                  color: "#ffffff",
-                                              }
-                                            : {
-                                                  backgroundColor: "#ffffff",
-                                                  color: "#000000",
-                                              }
-                                    }
-                                >
-                                    buzos
-                                </NavDropdown.Item>
-
-                                <NavDropdown.Item
-                                    as={Link}
-                                    to="/shop/remeras"
-                                    style={
-                                        theme === "dark"
-                                            ? {
-                                                  backgroundColor: "#000000",
-                                                  color: "#ffffff",
-                                              }
-                                            : {
-                                                  backgroundColor: "#ffffff",
-                                                  color: "#000000",
-                                              }
-                                    }
-                                >
-                                    Remeras
-                                </NavDropdown.Item>
+                                {categories.map((cat) => (
+                                    <NavDropdown.Item
+                                        as={Link}
+                                        to={`/shop/${cat.value}`}
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      backgroundColor:
+                                                          "#000000",
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      backgroundColor:
+                                                          "#ffffff",
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        {cat.label}
+                                    </NavDropdown.Item>
+                                ))}
 
                                 <NavDropdown.Divider
                                     style={
