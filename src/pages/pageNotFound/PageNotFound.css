@@ -1,10 +1,15 @@
-.container404 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10%;
+.container404-light {
+  padding-top: 12%;
+  padding-bottom: 12%;
+}
+
+.container404-dark {
+  padding-top: 12%;
+  padding-bottom: 12%;
+  background-color: black;
+  color: white;
 }
 
 .centered-column {
-    text-align: center;
+  text-align: center;
 }
