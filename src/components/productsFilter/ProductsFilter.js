@@ -31,7 +31,7 @@ const ProductsFilter = ({
 
     return (
         <div className={theme === "dark" ? "dark" : "light"}>
-            <div className="px-3">
+            <div className="px-3 ">
                 <div>
                     {params.category === "all" ? <></> : <h2>{categoria}</h2>}
                 </div>

@@ -18,7 +18,8 @@ export const AddProduct = ({ onProductAdded }) => {
     const { theme } = useContext(ThemeContext);
 
     const [sizesList, setSizesList] = React.useState([]);
-    const sizes = sizesList.join(", ");
+    const sizes = sizesList.join(" ");
+
     const [brand, setBrand] = useState("");
     const [productName, setProductName] = useState("");
     const [category, setCategory] = useState("");
@@ -160,22 +161,59 @@ export const AddProduct = ({ onProductAdded }) => {
                     className="max-w-xs"
                     onChange={changeImageHandler}
                 />
+                {image.length > 0 ? (
+                    <>
+                        <img id="addp-img-preview" alt="" src={image} />
+                    </>
+                ) : (
+                    <></>
+                )}
             </div>
 
             <div className="addp-product-size">
-                <CheckboxGroup
-                    label="Seleccione talles disponibles"
-                    color="primary"
-                    value={sizesList}
-                    onValueChange={setSizesList}
-                    orientation="horizontal"
-                >
-                    <Checkbox value="m">M</Checkbox>
-                    <Checkbox value="s">S</Checkbox>
-                    <Checkbox value="l">L</Checkbox>
-                    <Checkbox value="xl">XL</Checkbox>
-                    <Checkbox value="xxl">XXL</Checkbox>
-                </CheckboxGroup>
+                {category === "" ? (
+                    <CheckboxGroup
+                        label="Eslegir categoría para desplegar talles"
+                        color="primary"
+                        value={sizesList}
+                        onValueChange={setSizesList}
+                        orientation="horizontal"
+                    ></CheckboxGroup>
+                ) : category === "zapatillas" ? (
+                    <CheckboxGroup
+                        label="Seleccione talles disponibles"
+                        color="primary"
+                        value={sizesList}
+                        onValueChange={setSizesList}
+                        orientation="horizontal"
+                    >
+                        <Checkbox value="35">35</Checkbox>
+                        <Checkbox value="36">36</Checkbox>
+                        <Checkbox value="37">37</Checkbox>
+                        <Checkbox value="38">38</Checkbox>
+                        <Checkbox value="39">39</Checkbox>
+                        <Checkbox value="40">40</Checkbox>
+                        <Checkbox value="41">41</Checkbox>
+                        <Checkbox value="42">42</Checkbox>
+                        <Checkbox value="43">43</Checkbox>
+                        <Checkbox value="44">44</Checkbox>
+                        <Checkbox value="45">45</Checkbox>
+                    </CheckboxGroup>
+                ) : (
+                    <CheckboxGroup
+                        label="Seleccione talles disponibles"
+                        color="primary"
+                        value={sizesList}
+                        onValueChange={setSizesList}
+                        orientation="horizontal"
+                    >
+                        <Checkbox value="s">S</Checkbox>
+                        <Checkbox value="m">M</Checkbox>
+                        <Checkbox value="l">L</Checkbox>
+                        <Checkbox value="xl">XL</Checkbox>
+                        <Checkbox value="xxl">XXL</Checkbox>
+                    </CheckboxGroup>
+                )}
             </div>
 
             <div className="addp-product-new">
