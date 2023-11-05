@@ -26,7 +26,7 @@ const HomeCarousel = () => {
                     <img
                         onClick={print}
                         alt="."
-                        class="img-fluid"
+                        className="img-fluid"
                         src="https://acdn.mitiendanube.com/stores/219/431/themes/rio/1-slide-1693522291682-6746997536-4707a8e1093671d2aaf12e6833440e421693522310-1920-1920.webp?1032368351"
                     />
                     <Carousel.Caption>
@@ -39,7 +39,7 @@ const HomeCarousel = () => {
                     <img
                         onClick={print}
                         alt="."
-                        class="img-fluid"
+                        className="img-fluid"
                         src="https://acdn.mitiendanube.com/stores/219/431/themes/rio/1-slide-1695741399440-2889794928-7fc9dd715d4c764e08e65783d0c8538d1695741420-1920-1920.webp?1560854256"
                     />
                     <Carousel.Caption>
@@ -52,7 +52,7 @@ const HomeCarousel = () => {
                     <img
                         onClick={print}
                         alt="."
-                        class="img-fluid"
+                        className="img-fluid"
                         src="https://acdn.mitiendanube.com/stores/219/431/themes/rio/1-slide-1696373909121-8380962305-4fb8e8c81dda1969c08a7200e2a1b80d1696373926-1920-1920.webp?1155540372"
                     />
                     <Carousel.Caption>

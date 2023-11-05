@@ -98,8 +98,9 @@ const Header = () => {
                                 }
                                 title="Categorias"
                             >
-                                {categories.map((cat) => (
+                                {categories.map((cat, index) => (
                                     <NavDropdown.Item
+                                        key={index}
                                         as={Link}
                                         to={`/shop/${cat.value}`}
                                         style={

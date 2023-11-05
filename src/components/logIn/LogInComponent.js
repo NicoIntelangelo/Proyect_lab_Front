@@ -37,14 +37,14 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
     const toggleVisibility = () => setIsVisible(!isVisible);
     return (
         <div
-            class={
+            className={
                 theme === "dark"
                     ? "l-container l-container-dark dark"
                     : "l-container"
             }
         >
             <h2>Ingresar</h2>
-            <div class="l-input-container">
+            <div className="l-input-container">
                 <div id="l-email">
                     <Input
                         label="Email"
@@ -78,7 +78,7 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                     />
                 </div>
             </div>
-            <div class="l-buttons">
+            <div className="l-buttons">
                 <Button
                     onClick={authenticateUser}
                     radius="full"

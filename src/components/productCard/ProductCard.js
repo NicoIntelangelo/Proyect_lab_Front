@@ -15,15 +15,15 @@ const ProductCard = ({ price, discount, brand, productName, image, id }) => {
 
     return (
         <div
-            class={
+            className={
                 theme === "dark"
                     ? "pc-container pc-container-dark"
                     : "pc-container"
             }
         >
-            <img class="pc-image" alt="" src={image} />
+            <img className="pc-image" alt="" src={image} />
 
-            <h1 class="title">
+            <h1 className="title">
                 {brand} {productName}
             </h1>
 
@@ -38,7 +38,7 @@ const ProductCard = ({ price, discount, brand, productName, image, id }) => {
                 </>
             )}
 
-            <div class="buy-button">
+            <div className="buy-button">
                 <Link to={productDetail}>
                     <Button
                         radius="full"

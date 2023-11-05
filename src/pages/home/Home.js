@@ -41,22 +41,22 @@ const Home = () => {
 
     return (
         <div
-            class={
+            className={
                 theme === "dark"
                     ? "h-container h-container-dark pb-4"
                     : "h-container pb-4"
             }
         >
             <HomeCarousel />
-            <Divider class={theme === "dark" ? "dark" : "light"} />
-            <section class="info-section">
+            <Divider className={theme === "dark" ? "dark" : "light"} />
+            <section className="info-section">
                 <InfoBaner />
             </section>
-            <Divider class={theme === "dark" ? "dark" : "light"} />
+            <Divider className={theme === "dark" ? "dark" : "light"} />
             {newProductsList.length > 0 ? (
-                <div class="trend-products">
-                    <h2 class="new-in">New In</h2>
-                    <div class="trend-products-container">
+                <div className="trend-products">
+                    <h2 className="new-in">New In</h2>
+                    <div className="trend-products-container">
                         <CardSlider>{newProductsList}</CardSlider>
                     </div>
                 </div>

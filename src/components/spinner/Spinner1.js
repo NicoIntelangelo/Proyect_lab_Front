@@ -4,7 +4,7 @@ import "./Spinner1.css";
 
 const Spinner1 = () => {
     return (
-        <div class="h-spinner">
+        <div className="h-spinner">
             <Spinner size="lg" color="default" />
         </div>
     );

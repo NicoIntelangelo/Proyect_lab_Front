@@ -100,13 +100,13 @@ const Register = () => {
 
     return (
         <div
-            class={
+            className={
                 theme === "dark"
                     ? "r-container r-container-dark dark"
                     : "r-container"
             }
         >
-            <div class="r-sub-container">
+            <div className="r-sub-container">
                 {RegisterLogin === true ? (
                     <RegisterComponent
                         toggleRegisterLogin={toggleRegisterLogin}

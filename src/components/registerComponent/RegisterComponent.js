@@ -44,7 +44,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
     const toggleVisibility = () => setIsVisible(!isVisible);
     return (
         <div
-            class={
+            className={
                 theme === "dark"
                     ? "rc-container rc-container-dark dark"
                     : "rc-container"
@@ -52,7 +52,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
         >
             <h2>Registrarse</h2>
 
-            <div class="rc-input-container">
+            <div className="rc-input-container">
                 <div id="r-user">
                     <Input
                         label="Usuario"
@@ -116,7 +116,7 @@ const RegisterComponent = ({ toggleRegisterLogin, onUserAdded }) => {
                     />
                 </div>
             </div>
-            <div class="r-buttons">
+            <div className="r-buttons">
                 <Button
                     onClick={addUserHandler}
                     radius="full"

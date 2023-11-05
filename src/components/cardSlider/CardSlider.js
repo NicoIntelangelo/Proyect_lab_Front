@@ -49,10 +49,11 @@ const CardSlider = ({ children }) => {
                 keyboard={true}
                 className="mySwiper"
             >
-                {children.map((child) => {
+                {children.map((child, index) => {
                     return (
                         <SwiperSlide
-                            class={
+                            key={index}
+                            className={
                                 theme === "dark"
                                     ? "swiper-slide swiper-slide-dark"
                                     : "swiper-slide"

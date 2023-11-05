@@ -3,16 +3,16 @@ import "./InfoBaner.css";
 
 const InfoBaner = () => {
     return (
-        <div class="ib-container">
-            <div class="c1">
+        <div className="ib-container">
+            <div className="c1">
                 <h3>Envio Gratis</h3>
                 <p>En compras superiores a $60.000</p>
             </div>
-            <div class="c2">
+            <div className="c2">
                 <h3>Envio Gratis</h3>
                 <p>En compras superiores a $60.000</p>
             </div>
-            <div class="c3">
+            <div className="c3">
                 <h3>Envio Gratis</h3>
                 <p>En compras superiores a $60.000</p>
             </div>
