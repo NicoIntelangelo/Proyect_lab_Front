@@ -1,22 +1,18 @@
 .fot-dark-theme {
-    color: #ffffff;
-    background-color: #000000;
-}
-
-.fot-light-theme {
-    color: #000000;
-    background-color: #ffffff;
+  color: white;
+  background-color: black;
 }
 
 .fot-social {
-    --tw-text-opacity: 1;
-    color: rgb(8 145 178 / var(--tw-text-opacity));
-    text-decoration-line: none;
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+  text-decoration-line: none;
 }
 .fot-social:hover {
-    text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
-.dark-fot-divider {
-    margin-top: 0px;
+.fot-divider {
+  opacity: 100;
+  height: 0.5px;
 }
