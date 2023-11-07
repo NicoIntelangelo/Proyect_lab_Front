@@ -1,0 +1,57 @@
+.editp-container {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 15px;
+
+    height: auto;
+    width: 350px;
+
+    margin-bottom: 50px;
+}
+
+.ap-product-name {
+    margin-top: 15px;
+}
+
+.editp-brand-name {
+    margin-top: 15px;
+}
+
+.editp-categories {
+    margin-top: 15px;
+}
+
+.editp-price {
+    margin-top: 15px;
+}
+
+.editp-discount {
+    margin-top: 15px;
+}
+
+.editp-product-image {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#editp-img-preview {
+    margin-top: 8px;
+    height: 200px;
+}
+
+.editp-product-size {
+    margin-top: 15px;
+}
+
+.editp-product-new {
+    margin-top: 15px;
+}
+
+.delete-item {
+    color: rgb(255, 0, 0);
+}
+.delete-item:hover {
+    color: white;
+}

@@ -2,20 +2,55 @@ import React, { useState } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 
-import "./AddProduct.css";
+import "./EditProduct.css";
 import {
     Button,
     Checkbox,
     CheckboxGroup,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownTrigger,
     Input,
     Select,
     SelectItem,
 } from "@nextui-org/react";
 
 import { categories } from "../../assets/productConfig/Categories";
+import { useEffect } from "react";
 
-export const AddProduct = ({ onProductAdded }) => {
+const EditProduct = ({ onProductEdit }) => {
     const { theme } = useContext(ThemeContext);
+
+    function convertStringToList(str) {
+        const elements = str.split(",").map((element) => element.trim());
+        return elements;
+    }
+
+    const editProductId = 11;
+
+    useEffect(() => {
+        fetch("http://localhost:8080/products/detail/" + editProductId, {
+            headers: {
+                Accept: "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((product) => {
+                //setProduct(product);
+                setBrand(product.brand);
+                setProductName(product.productName);
+                setCategory(product.category);
+                setPrice(product.price);
+                setDiscount(product.discount);
+                setImage(product.image);
+                setNewArticle(product.newArticle);
+                setSizesList(convertStringToList(product.talles));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     const [sizesList, setSizesList] = React.useState([]);
     const sizes = sizesList.join(", ");
@@ -47,10 +82,10 @@ export const AddProduct = ({ onProductAdded }) => {
         setImage(event.target.value);
     };
 
-    const addProductHandler = (event) => {
+    const editProductHandler = (event) => {
         event.preventDefault();
         const newProduct = {
-            id: 0,
+            id: editProductId,
             brand: brand,
             productName: productName,
             category: category,
@@ -60,13 +95,13 @@ export const AddProduct = ({ onProductAdded }) => {
             image: image,
             newArticle: newArticle,
         };
-        onProductAdded(newProduct);
+        onProductEdit(newProduct);
         console.log(newProduct);
     };
 
     return (
         <div
-            className="addp-container"
+            className="editp-container"
             style={
                 theme === "dark"
                     ? {
@@ -77,7 +112,7 @@ export const AddProduct = ({ onProductAdded }) => {
                       }
             }
         >
-            <h2 className="mt-0 ">Cargar Producto</h2>
+            <h2 className="mt-0 ">Editar Producto</h2>
 
             <div className="ap-product-name">
                 <Input
@@ -86,36 +121,43 @@ export const AddProduct = ({ onProductAdded }) => {
                     placeholder="Cargar Nombre del producto"
                     //className="max-w-s"
                     onChange={changeProductNameHandler}
+                    value={productName}
                 />
             </div>
 
-            <div className="addp-brand-name">
+            <div className="editp-brand-name">
                 <Input
                     label="Marca"
                     variant="bordered"
                     placeholder="Cargar Marca del producto"
                     className="max-w-xs"
                     onChange={changeBrandHandler}
+                    value={brand}
                 />
             </div>
 
-            <div className="addp-categories">
-                <Select
-                    label="Categoria"
-                    variant="bordered"
-                    placeholder="Seleccionar categoría del producto"
-                    className="max-w-xs"
-                    onChange={changeCategoryHandler}
-                >
-                    {categories.map((cat) => (
-                        <SelectItem key={cat.value} value={cat.value}>
-                            {cat.label}
-                        </SelectItem>
-                    ))}
-                </Select>
-            </div>
+            {category.length > 0 ? (
+                <div className="editp-categories">
+                    <Select
+                        label="Categoria"
+                        variant="bordered"
+                        placeholder="Seleccionar categoría del producto"
+                        className="max-w-xs"
+                        onChange={changeCategoryHandler}
+                        defaultSelectedKeys={[category]}
+                    >
+                        {categories.map((cat) => (
+                            <SelectItem key={cat.value} value={cat.value}>
+                                {cat.label}
+                            </SelectItem>
+                        ))}
+                    </Select>
+                </div>
+            ) : (
+                <></>
+            )}
 
-            <div className="addp-price">
+            <div className="editp-price">
                 <Input
                     variant="bordered"
                     type="number"
@@ -130,10 +172,11 @@ export const AddProduct = ({ onProductAdded }) => {
                             </span>
                         </div>
                     }
+                    value={price}
                 />
             </div>
 
-            <div className="addp-discount">
+            <div className="editp-discount">
                 <Input
                     min="0"
                     max="100"
@@ -150,27 +193,29 @@ export const AddProduct = ({ onProductAdded }) => {
                             </span>
                         </div>
                     }
+                    value={discount}
                 />
             </div>
 
-            <div className="addp-product-image">
+            <div className="editp-product-image">
                 <Input
                     label="Link Imagen"
                     variant="bordered"
                     placeholder="Cargar link de la imagen del producto"
                     className="max-w-xs"
                     onChange={changeImageHandler}
+                    value={image}
                 />
                 {image.length > 0 ? (
                     <>
-                        <img id="addp-img-preview" alt="" src={image} />
+                        <img id="editp-img-preview" alt="" src={image} />
                     </>
                 ) : (
                     <></>
                 )}
             </div>
 
-            <div className="addp-product-size">
+            <div className="editp-product-size">
                 {category === "" ? (
                     <CheckboxGroup
                         label="Eslegir categoría para desplegar talles"
@@ -216,19 +261,38 @@ export const AddProduct = ({ onProductAdded }) => {
                 )}
             </div>
 
-            <div className="addp-product-new">
-                <Checkbox isSelected={newArticle} onValueChange={setNewArticle}>
+            <div className="editp-product-new">
+                <Checkbox
+                    isSelected={newArticle}
+                    onValueChange={setNewArticle}
+                    value={newArticle}
+                >
                     Colocar en la seccion New
                 </Checkbox>
             </div>
 
-            <Button
-                onClick={addProductHandler}
-                radius="full"
-                className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
-            >
-                Cargar
-            </Button>
+            <Dropdown aria-label="Options Dropdown">
+                <DropdownTrigger>
+                    <Button className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button">
+                        Opciones
+                    </Button>
+                </DropdownTrigger>
+                <DropdownMenu>
+                    <DropdownItem key="new" onClick={editProductHandler}>
+                        Cargar Edición
+                    </DropdownItem>
+
+                    <DropdownItem
+                        key="delete"
+                        className="delete-item"
+                        color="danger"
+                    >
+                        Eliminar Producto
+                    </DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
         </div>
     );
 };
+
+export default EditProduct;
