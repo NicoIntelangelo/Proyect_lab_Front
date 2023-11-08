@@ -13,8 +13,8 @@ const Shop = () => {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [brand, setBrand] = React.useState([]);
-  const [maxPrice, setMaxPrice] = useState();
-  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState(1000000);
+  const [minPrice, setMinPrice] = useState(0);
   const { theme } = useContext(ThemeContext);
 
   const params = useParams();
@@ -36,26 +36,22 @@ const Shop = () => {
   }, [params]);
 
   const handleMaxPriceChange = (e) => {
-    if (e.target.value !== "") {
-      setMaxPrice(parseFloat(e.target.value));
-    }
+    setMaxPrice(e);
   };
 
   const handleMinPriceChange = (e) => {
-    if (e.target.value !== "") {
-      setMinPrice(parseFloat(e.target.value));
-    }
+    setMinPrice(e);
   };
 
   const handleReset = () => {
     setProducts([...originalProducts]);
-    setMaxPrice("");
-    setMinPrice("");
+    setMaxPrice(1000000);
+    setMinPrice(0);
   };
 
   const handleFilter = () => {
     if ((maxPrice !== "") | (minPrice !== "")) {
-      const filteredProducts = products.filter(
+      const filteredProducts = originalProducts.filter(
         (p) =>
           p.price - (p.price * p.discount) / 100 <= maxPrice &&
           p.price - (p.price * p.discount) / 100 >= minPrice
