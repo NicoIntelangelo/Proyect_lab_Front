@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./AlertComponent.css";
-import { ThemeContext } from "../../services/theme/theme.context";
-import { useContext } from "react";
+//import { ThemeContext } from "../../services/theme/theme.context";
+//import { useContext } from "react";
 
 const AlertComponent = ({ message, onClose }) => {
-    const { theme } = useContext(ThemeContext);
+    //const { theme } = useContext(ThemeContext);
     const [visible, setVisible] = useState(true);
 
     const handleClose = () => {

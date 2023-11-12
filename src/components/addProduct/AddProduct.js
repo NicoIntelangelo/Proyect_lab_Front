@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 
