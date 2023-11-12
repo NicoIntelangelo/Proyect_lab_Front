@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 
@@ -13,11 +13,14 @@ import {
 } from "@nextui-org/react";
 
 import { categories } from "../../assets/productConfig/Categories";
+import AlertComponent from "../alertComponent/AlertComponent";
 
-export const AddProduct = ({ onProductAdded }) => {
+export const AddProduct = ({ onProductAdded, postProductResponse }) => {
     const { theme } = useContext(ThemeContext);
 
-    const [sizesList, setSizesList] = React.useState([]);
+    const [renderKey, setRenderKey] = useState(0); // Agregar un estado para forzar la renderización
+
+    const [sizesList, setSizesList] = useState([]);
     const sizes = sizesList.join(", ");
 
     const [brand, setBrand] = useState("");
@@ -54,18 +57,36 @@ export const AddProduct = ({ onProductAdded }) => {
             brand: brand,
             productName: productName,
             category: category,
-            talles: sizes,
+            sizes: sizes,
             price: price,
             discount: discount,
             image: image,
-            newArticle: newArticle,
+            isNewArticle: newArticle,
         };
         onProductAdded(newProduct);
-        console.log(newProduct);
+        if (postProductResponse === 201) {
+            console.log("exito");
+            setSizesList([]);
+            // Forzar la renderización del componente incrementando el valor de renderKey
+            setRenderKey(renderKey + 1);
+            showAlertWithMessage("hola");
+        }
+    };
+
+    const [alertMessage, setAlertMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessage = (message) => {
+        setAlertMessage(message);
+        setShowAlert(true);
+    };
+    const closeAlert = () => {
+        setShowAlert(false);
     };
 
     return (
         <div
+            key={renderKey}
             className="addp-container"
             style={
                 theme === "dark"
@@ -77,6 +98,15 @@ export const AddProduct = ({ onProductAdded }) => {
                       }
             }
         >
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        onClose={closeAlert}
+                    />
+                )}
+            </div>
+
             <h2 className="mt-0 ">Cargar Producto</h2>
 
             <div className="ap-product-name">
@@ -84,7 +114,6 @@ export const AddProduct = ({ onProductAdded }) => {
                     label="Nombre"
                     variant="bordered"
                     placeholder="Cargar Nombre del producto"
-                    //className="max-w-s"
                     onChange={changeProductNameHandler}
                 />
             </div>

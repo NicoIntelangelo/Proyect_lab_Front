@@ -27,10 +27,10 @@ const EditProduct = ({ onProductEdit }) => {
         return elements;
     }
 
-    const editProductId = 11;
+    const editProductId = 7;
 
     useEffect(() => {
-        fetch("http://localhost:8080/products/detail/" + editProductId, {
+        fetch("https://localhost:7254/products/id/" + editProductId, {
             headers: {
                 Accept: "application/json",
             },
@@ -45,7 +45,7 @@ const EditProduct = ({ onProductEdit }) => {
                 setDiscount(product.discount);
                 setImage(product.image);
                 setNewArticle(product.newArticle);
-                setSizesList(convertStringToList(product.talles));
+                setSizesList(convertStringToList(product.sizes));
             })
             .catch((error) => {
                 console.log(error);
@@ -89,11 +89,11 @@ const EditProduct = ({ onProductEdit }) => {
             brand: brand,
             productName: productName,
             category: category,
-            talles: sizes,
+            sizes: sizes,
             price: price,
             discount: discount,
             image: image,
-            newArticle: newArticle,
+            isNewArticle: newArticle,
         };
         onProductEdit(newProduct);
         console.log(newProduct);

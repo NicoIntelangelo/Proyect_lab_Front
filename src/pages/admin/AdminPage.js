@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./AdminPage.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { AddProduct } from "../../components/addProduct/AddProduct";
@@ -6,10 +6,11 @@ import EditProduct from "../../components/editProduct/EditProduct";
 
 const AdminPage = () => {
     const { theme } = useContext(ThemeContext);
+    const [postProductResponse, setPostProductResponse] = useState(0);
 
     const addProductHandler = async (product) => {
         try {
-            const response = await fetch("http://localhost:8080/products", {
+            const response = await fetch("https://localhost:7254/products", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -19,18 +20,19 @@ const AdminPage = () => {
                     brand: product.brand,
                     productName: product.productName,
                     category: product.category,
-                    talles: product.talles,
+                    sizes: product.sizes,
                     price: product.price,
                     discount: product.discount,
                     image: product.image,
-                    newArticle: product.newArticle,
+                    isNewArticle: product.isNewArticle,
                 }),
             });
 
-            if (response.ok) {
-                const user = await response.json();
-                console.log(user, response.status);
-                return user;
+            if (response.status === 201) {
+                const product = await response.json();
+                console.log(product, response.status);
+                setPostProductResponse(response.status);
+                return product;
             } else {
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
@@ -41,7 +43,7 @@ const AdminPage = () => {
 
     const editProductHandler = async (product) => {
         try {
-            const response = await fetch("http://localhost:8080/products", {
+            const response = await fetch("https://localhost:7254/products", {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -51,18 +53,18 @@ const AdminPage = () => {
                     brand: product.brand,
                     productName: product.productName,
                     category: product.category,
-                    talles: product.talles,
+                    sizes: product.sizes,
                     price: product.price,
                     discount: product.discount,
                     image: product.image,
-                    newArticle: product.newArticle,
+                    isNewArticle: product.isNewArticle,
                 }),
             });
 
             if (response.ok) {
-                const user = await response.json();
-                console.log(user, response.status);
-                return user;
+                const product = await response.json();
+                console.log(product, response.status);
+                return product;
             } else {
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
@@ -81,7 +83,10 @@ const AdminPage = () => {
         >
             <div className="ap-sub-container">
                 <h1 className="">AdminPage</h1>
-                <AddProduct onProductAdded={addProductHandler} />
+                <AddProduct
+                    onProductAdded={addProductHandler}
+                    postProductResponse={postProductResponse}
+                />
                 <EditProduct onProductEdit={editProductHandler} />
             </div>
         </div>

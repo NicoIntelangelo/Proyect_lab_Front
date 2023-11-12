@@ -45,19 +45,47 @@ const Register = () => {
     //         .catch((error) => console.log(error));
     // }, []);
 
+    // const addUserHandler = async (user) => {
+    //     try {
+    //         const response = await fetch("http://localhost:8080/auth/create", {
+    //             method: "POST",
+    //             headers: {
+    //                 "content-type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 id: 0,
+    //                 name: user.name,
+    //                 username: user.name,
+    //                 email: user.email,
+    //                 password: user.password,
+    //             }),
+    //         });
+
+    //         if (response.ok) {
+    //             const user = await response.json();
+    //             console.log(user, response.status);
+    //             return user;
+    //         } else {
+    //             throw new Error("La respuesta del servidor no fue exitosa");
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
     const addUserHandler = async (user) => {
         try {
-            const response = await fetch("http://localhost:8080/auth/create", {
+            const response = await fetch("https://localhost:7254/auth", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    id: 0,
                     name: user.name,
-                    username: user.name,
                     email: user.email,
+                    direction: "string",
                     password: user.password,
+                    role: 0,
                 }),
             });
 
@@ -75,21 +103,26 @@ const Register = () => {
 
     const authentication = async (user) => {
         try {
-            const response = await fetch("http://localhost:8080/auth/create", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: user.email,
-                    password: user.password,
-                }),
-            });
+            const response = await fetch(
+                "https://localhost:7254/auth/authenticate",
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        accept: "*/*",
+                    },
+                    body: JSON.stringify({
+                        email: user.email,
+                        password: user.password,
+                    }),
+                }
+            );
 
             if (response.ok) {
-                const user = await response.json();
-                console.log(user, response.status);
-                return user;
+                const token = await response.text();
+                console.log(token, response.status);
+                console.log(token);
+                return token;
             } else {
                 throw new Error("La respuesta del servidor no fue exitosa");
             }

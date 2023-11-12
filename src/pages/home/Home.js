@@ -10,59 +10,86 @@ import { ThemeContext } from "../../services/theme/theme.context";
 import { Divider } from "@nextui-org/react";
 
 const Home = () => {
-  const [newProducts, setNewProducts] = useState([]);
-  const { theme } = useContext(ThemeContext);
+    const [newProducts, setNewProducts] = useState([]);
+    const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    fetch("http://localhost:8080/products/new", {
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((products) => {
-        setNewProducts(products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  const newProductsList = newProducts.map((product) => (
-    <ProductCard
-      key={product.id}
-      id={product.id}
-      price={product.price}
-      discount={product.discount}
-      brand={product.brand}
-      productName={product.productName}
-      image={product.image}
-    />
-  ));
+    // useEffect(() => {
+    //   fetch("http://localhost:8080/products/new", {
+    //     headers: {
+    //       Accept: "application/json",
+    //     },
+    //   })
+    //     .then((response) => response.json())
+    //     .then((products) => {
+    //       setNewProducts(products);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }, []);
+    // const newProductsList = newProducts.map((product) => (
+    //   <ProductCard
+    //     key={product.id}
+    //     id={product.id}
+    //     price={product.price}
+    //     discount={product.discount}
+    //     brand={product.brand}
+    //     productName={product.productName}
+    //     image={product.image}
+    //   />
+    // ));
+    useEffect(() => {
+        fetch("https://localhost:7254/products/new", {
+            headers: {
+                Accept: "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((products) => {
+                setNewProducts(products);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+    const newProductsList = newProducts.map((product) => (
+        <ProductCard
+            key={product.id}
+            id={product.id}
+            price={product.price}
+            discount={product.discount}
+            brand={product.brand}
+            productName={product.productName}
+            image={product.image}
+        />
+    ));
 
-  return (
-    <div
-      className={
-        theme === "dark" ? "dark h-container-dark pb-4" : "h-container pb-4"
-      }
-    >
-      <HomeCarousel />
-      <Divider className="home-divider" />
-      <section className="info-section">
-        <InfoBaner />
-      </section>
-      <Divider className="home-divider" />
-      {newProductsList.length > 0 ? (
-        <div className="trend-products">
-          <h2 className="new-in">New In</h2>
-          <div className="trend-products-container">
-            <CardSlider>{newProductsList}</CardSlider>
-          </div>
+    return (
+        <div
+            className={
+                theme === "dark"
+                    ? "dark h-container-dark pb-4"
+                    : "h-container pb-4"
+            }
+        >
+            <HomeCarousel />
+            <Divider className="home-divider" />
+            <section className="info-section">
+                <InfoBaner />
+            </section>
+            <Divider className="home-divider" />
+            {newProductsList.length > 0 ? (
+                <div className="trend-products">
+                    <h2 className="new-in">New In</h2>
+                    <div className="trend-products-container">
+                        <CardSlider>{newProductsList}</CardSlider>
+                    </div>
+                </div>
+            ) : (
+                <Spinner1 />
+            )}
         </div>
-      ) : (
-        <Spinner1 />
-      )}
-    </div>
-  );
+    );
 };
 
 export default Home;
