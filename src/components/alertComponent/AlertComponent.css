@@ -4,9 +4,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-    transition: opacity 0.3s;
 }
 
 .custom-alert.show {
@@ -17,20 +15,36 @@
 }
 
 .alert-content {
-    background-color: #000000;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    height: auto;
+    width: 350px;
     position: relative;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    color: #000000;
+
+    padding: 20px;
+
+    -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+    -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+    box-shadow: 3px 3px 10px 3px #dddddd;
+}
+
+.alert-content-dark {
+    -webkit-box-shadow: 3px 3px 10px 3px #646464;
+    -moz-box-shadow: 3px 3px 10px 3px #646464;
+    box-shadow: 3px 3px 10px 3px#646464;
+
+    background-color: black;
+    color: white;
 }
 
 .close {
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 10px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 27px;
 }
 
 .close:hover {

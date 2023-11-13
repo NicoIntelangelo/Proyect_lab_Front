@@ -82,9 +82,20 @@ const EditProduct = ({ onProductEdit }) => {
         setImage(event.target.value);
     };
 
+    // const clearForm = () => {
+    //     setImage("");
+    //     setBrand("");
+    //     setProductName("");
+    //     setCategory("");
+    //     setPrice(0);
+    //     setDiscount(0);
+    //     setNewArticle(false);
+    //     setSizesList([]);
+    // };
+
     const editProductHandler = (event) => {
         event.preventDefault();
-        const newProduct = {
+        const editProduct = {
             id: editProductId,
             brand: brand,
             productName: productName,
@@ -95,8 +106,7 @@ const EditProduct = ({ onProductEdit }) => {
             image: image,
             isNewArticle: newArticle,
         };
-        onProductEdit(newProduct);
-        console.log(newProduct);
+        onProductEdit(editProduct);
     };
 
     return (
@@ -277,8 +287,12 @@ const EditProduct = ({ onProductEdit }) => {
                         Opciones
                     </Button>
                 </DropdownTrigger>
-                <DropdownMenu>
-                    <DropdownItem key="new" onClick={editProductHandler}>
+                <DropdownMenu aria-label="Options Dropdown">
+                    <DropdownItem
+                        key="new"
+                        onClick={editProductHandler}
+                        aria-labelledby="menu-label"
+                    >
                         Cargar Edición
                     </DropdownItem>
 
@@ -286,6 +300,7 @@ const EditProduct = ({ onProductEdit }) => {
                         key="delete"
                         className="delete-item"
                         color="danger"
+                        aria-labelledby="menu-label"
                     >
                         Eliminar Producto
                     </DropdownItem>

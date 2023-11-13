@@ -13,9 +13,8 @@ import {
 } from "@nextui-org/react";
 
 import { categories } from "../../assets/productConfig/Categories";
-import AlertComponent from "../alertComponent/AlertComponent";
 
-export const AddProduct = ({ onProductAdded, postProductResponse }) => {
+export const AddProduct = ({ onProductAdded }) => {
     const { theme } = useContext(ThemeContext);
 
     const [renderKey, setRenderKey] = useState(0); // Agregar un estado para forzar la renderización
@@ -50,6 +49,18 @@ export const AddProduct = ({ onProductAdded, postProductResponse }) => {
         setImage(event.target.value);
     };
 
+    const clearForm = () => {
+        setImage("");
+        setBrand("");
+        setProductName("");
+        setCategory("");
+        setPrice(0);
+        setDiscount(0);
+        setNewArticle(false);
+        setSizesList([]);
+        setRenderKey(renderKey + 1); // Forzar la renderización del componente incrementando el valor de renderKey
+    };
+
     const addProductHandler = (event) => {
         event.preventDefault();
         const newProduct = {
@@ -64,24 +75,8 @@ export const AddProduct = ({ onProductAdded, postProductResponse }) => {
             isNewArticle: newArticle,
         };
         onProductAdded(newProduct);
-        if (postProductResponse === 201) {
-            console.log("exito");
-            setSizesList([]);
-            // Forzar la renderización del componente incrementando el valor de renderKey
-            setRenderKey(renderKey + 1);
-            showAlertWithMessage("hola");
-        }
-    };
-
-    const [alertMessage, setAlertMessage] = useState("");
-    const [showAlert, setShowAlert] = useState(false);
-
-    const showAlertWithMessage = (message) => {
-        setAlertMessage(message);
-        setShowAlert(true);
-    };
-    const closeAlert = () => {
-        setShowAlert(false);
+        console.log(newProduct);
+        clearForm();
     };
 
     return (
@@ -98,15 +93,6 @@ export const AddProduct = ({ onProductAdded, postProductResponse }) => {
                       }
             }
         >
-            <div>
-                {showAlert && (
-                    <AlertComponent
-                        message={alertMessage}
-                        onClose={closeAlert}
-                    />
-                )}
-            </div>
-
             <h2 className="mt-0 ">Cargar Producto</h2>
 
             <div className="ap-product-name">

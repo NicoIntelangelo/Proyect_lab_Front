@@ -3,10 +3,27 @@ import "./AdminPage.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { AddProduct } from "../../components/addProduct/AddProduct";
 import EditProduct from "../../components/editProduct/EditProduct";
+import AlertComponent from "../../components/alertComponent/AlertComponent";
 
 const AdminPage = () => {
     const { theme } = useContext(ThemeContext);
-    const [postProductResponse, setPostProductResponse] = useState(0);
+
+    //////////////////////////////////////////////////////////////////////////////
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertButtonMessage, setAlertButtonMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessage = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlert(true);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
+    //////////////////////////////////////////////////////////////////////////
 
     const addProductHandler = async (product) => {
         try {
@@ -31,12 +48,20 @@ const AdminPage = () => {
             if (response.status === 201) {
                 const product = await response.json();
                 console.log(product, response.status);
-                setPostProductResponse(response.status);
+                showAlertWithMessage("Producto cargado con exito", "Continuar");
                 return product;
             } else {
+                showAlertWithMessage(
+                    "Hubo un problema al intentar cargar el Producto",
+                    "Volver"
+                );
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
         } catch (error) {
+            showAlertWithMessage(
+                "Hubo un problema al intentar cargar el Producto",
+                "Volver"
+            );
             console.log(error);
         }
     };
@@ -60,15 +85,23 @@ const AdminPage = () => {
                     isNewArticle: product.isNewArticle,
                 }),
             });
-
-            if (response.ok) {
+            if (response.status === 200) {
                 const product = await response.json();
                 console.log(product, response.status);
+                showAlertWithMessage("Producto cargado con exito", "Continuar");
                 return product;
             } else {
+                showAlertWithMessage(
+                    "Problemas al intentar editar el producto",
+                    "Volver"
+                );
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
         } catch (error) {
+            showAlertWithMessage(
+                "Problemas al intentar editar el producto",
+                "Volver"
+            );
             console.log(error);
         }
     };
@@ -81,12 +114,18 @@ const AdminPage = () => {
                     : "ap-container"
             }
         >
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    />
+                )}
+            </div>
             <div className="ap-sub-container">
                 <h1 className="">AdminPage</h1>
-                <AddProduct
-                    onProductAdded={addProductHandler}
-                    postProductResponse={postProductResponse}
-                />
+                <AddProduct onProductAdded={addProductHandler} />
                 <EditProduct onProductEdit={editProductHandler} />
             </div>
         </div>

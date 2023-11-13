@@ -15,23 +15,6 @@ const Header = () => {
 
     return (
         <>
-            <p
-                style={
-                    theme === "dark"
-                        ? {
-                              color: "#ffffff",
-                              backgroundColor: "#000000",
-                              border: "8px solid #000000",
-                          }
-                        : {
-                              backgroundColor: "#ffffff",
-                              border: "8px solid #ffffff",
-                          }
-                }
-            >
-                6 Cuotas sin interes de Lunes a Miércoles con todos los Bancos
-            </p>
-
             <Navbar
                 style={
                     theme === "dark"
@@ -71,8 +54,8 @@ const Header = () => {
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="me-auto my-2 my-lg-2"
-                            style={{ maxHeight: "100px" }}
-                            navbarScroll
+                            //style={{ maxHeight: "100px" }}
+                            //navbarScroll
                         >
                             <Nav.Link
                                 as={Link}
