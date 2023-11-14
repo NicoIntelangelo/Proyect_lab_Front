@@ -4,8 +4,10 @@ import { ThemeContext } from "../../services/theme/theme.context";
 import { AddProduct } from "../../components/addProduct/AddProduct";
 import EditProduct from "../../components/editProduct/EditProduct";
 import AlertComponent from "../../components/alertComponent/AlertComponent";
+import AuthService from "../../services/authentication/auth.service";
 
 const AdminPage = () => {
+    const authService = new AuthService();
     const { theme } = useContext(ThemeContext);
 
     //////////////////////////////////////////////////////////////////////////////
@@ -27,10 +29,20 @@ const AdminPage = () => {
 
     const addProductHandler = async (product) => {
         try {
+            console.log(authService.isLoggedIn());
+            if (authService.isLoggedIn() !== true) {
+                showAlertWithMessage(
+                    "Debe Iniciar sesion para realizar esta accion",
+                    "Volver"
+                );
+                return false;
+            }
+
             const response = await fetch("https://localhost:7254/products", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
+                    Authorization: `Bearer ${authService.getSession().token}`,
                 },
                 body: JSON.stringify({
                     id: 0,
@@ -53,7 +65,7 @@ const AdminPage = () => {
             } else {
                 showAlertWithMessage(
                     "Hubo un problema al intentar cargar el Producto",
-                    "Volver"
+                    "Volver" 
                 );
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
