@@ -198,7 +198,7 @@ const Header = () => {
                             </Nav.Link>
                             <Nav.Link
                                 as={Link}
-                                to="/ingresar"
+                                to="/cart"
                                 style={
                                     theme === "dark"
                                         ? {

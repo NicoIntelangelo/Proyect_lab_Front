@@ -1,47 +1,50 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useCart } from "../../services/cartContext/cart.context";
 
 const ProductDetail = () => {
-    const [product, setProduct] = useState();
-    const params = useParams();
+  const [product, setProduct] = useState();
+  const { dispatch } = useCart();
+  const params = useParams();
+  const addToCartHandler = () => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
 
-    useEffect(() => {
-        fetch("http://localhost:8080/products/detail/" + params.id, {
-            headers: {
-                Accept: "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then((product) => {
-                setProduct(product);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [params]);
-    return (
+  useEffect(() => {
+    fetch("https://localhost:7254/products/id/" + params.id, {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setProduct(product);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [params]);
+  return (
+    <div>
+      {product ? (
         <div>
-            {product ? (
-                <div>
-                    <h1>
-                        {product.brand} {product.productName}
-                    </h1>
-                    <h4>
-                        $
-                        {(
-                            (product.price / 100) *
-                            (100 - product.discount)
-                        ).toFixed(2)}
-                    </h4>
-                    <h5>${product.price.toFixed(2)}</h5>
-                </div>
-            ) : (
-                <p>Cargando...</p>
-            )}
+          <h1>
+            {product.brand} {product.productName}
+          </h1>
+          <h4>
+            ${((product.price / 100) * (100 - product.discount)).toFixed(2)}
+          </h4>
+          <h5>${product.price.toFixed(2)}</h5>
+          <Button onClick={addToCartHandler}>Agregar a carrito</Button>
         </div>
-    );
+      ) : (
+        <p>Cargando...</p>
+      )}
+    </div>
+  );
 };
 
 export default ProductDetail;
