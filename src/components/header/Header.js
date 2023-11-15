@@ -9,9 +9,11 @@ import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { categories } from "../../assets/productConfig/Categories";
+import { RoleContext } from "../../services/authentication/role.context";
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
+    const { role } = useContext(RoleContext);
 
     return (
         <>
@@ -137,21 +139,45 @@ const Header = () => {
                                 </NavDropdown.Item>
                             </NavDropdown>
 
-                            <Nav.Link
-                                as={Link}
-                                to="/admin"
-                                style={
-                                    theme === "dark"
-                                        ? {
-                                              color: "#ffffff",
-                                          }
-                                        : {
-                                              color: "#000000",
-                                          }
-                                }
-                            >
-                                Admin
-                            </Nav.Link>
+                            {role === 1 || role === 2 ? (
+                                <Nav.Link
+                                    as={Link}
+                                    to="/admin"
+                                    style={
+                                        theme === "dark"
+                                            ? {
+                                                  color: "#ffffff",
+                                              }
+                                            : {
+                                                  color: "#000000",
+                                              }
+                                    }
+                                >
+                                    Admin
+                                </Nav.Link>
+                            ) : (
+                                <></>
+                            )}
+
+                            {role === 2 ? (
+                                <Nav.Link
+                                    as={Link}
+                                    to="/admin"
+                                    style={
+                                        theme === "dark"
+                                            ? {
+                                                  color: "#ffffff",
+                                              }
+                                            : {
+                                                  color: "#000000",
+                                              }
+                                    }
+                                >
+                                    Super Admin
+                                </Nav.Link>
+                            ) : (
+                                <></>
+                            )}
                         </Nav>
 
                         <Nav className="my-2 my-lg-2 me-3">

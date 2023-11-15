@@ -65,7 +65,7 @@ const AdminPage = () => {
             } else {
                 showAlertWithMessage(
                     "Hubo un problema al intentar cargar el Producto",
-                    "Volver" 
+                    "Volver"
                 );
                 throw new Error("La respuesta del servidor no fue exitosa");
             }

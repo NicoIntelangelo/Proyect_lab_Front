@@ -1,16 +1,23 @@
 class AuthService {
-    constructor() {
-        this.loggedIn = false;
-    }
-
     isLoggedIn() {
-        return this.loggedIn;
+        const session = JSON.parse(localStorage.getItem("session"));
+        if (session.expiresIn) {
+            const expirationDate = new Date(session.expiresIn);
+            const currentDate = new Date();
+            debugger;
+            if (currentDate > expirationDate) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     getSession() {
         const item = localStorage.getItem("session") || "invalid";
         if (item !== "invalid") {
-            this.loggedIn = true;
             return JSON.parse(item);
         }
         return { expiresIn: "", token: "" };
@@ -22,13 +29,12 @@ class AuthService {
 
     setSession(token, expiresTimeHours = 1) {
         const date = new Date();
+
         date.setHours(date.getHours() + expiresTimeHours);
         const session = {
             expiresIn: new Date(date).toISOString(),
             token,
         };
-
-        this.loggedIn = true;
         localStorage.setItem("session", JSON.stringify(session));
     }
 
@@ -44,7 +50,6 @@ class AuthService {
     resetSession() {
         localStorage.removeItem("session");
         localStorage.removeItem("Id");
-        this.loggedIn = false;
     }
 }
 

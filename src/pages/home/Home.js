@@ -13,31 +13,6 @@ const Home = () => {
     const [newProducts, setNewProducts] = useState([]);
     const { theme } = useContext(ThemeContext);
 
-    // useEffect(() => {
-    //   fetch("http://localhost:8080/products/new", {
-    //     headers: {
-    //       Accept: "application/json",
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((products) => {
-    //       setNewProducts(products);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }, []);
-    // const newProductsList = newProducts.map((product) => (
-    //   <ProductCard
-    //     key={product.id}
-    //     id={product.id}
-    //     price={product.price}
-    //     discount={product.discount}
-    //     brand={product.brand}
-    //     productName={product.productName}
-    //     image={product.image}
-    //   />
-    // ));
     useEffect(() => {
         fetch("https://localhost:7254/products/new", {
             headers: {

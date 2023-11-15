@@ -6,10 +6,12 @@ import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import LogInComponent from "../../components/logIn/LogInComponent";
 import AuthService from "../../services/authentication/auth.service";
+import { RoleContext } from "../../services/authentication/role.context";
 
 const Register = () => {
     const authService = new AuthService();
     const { theme } = useContext(ThemeContext);
+    const { setRole } = useContext(RoleContext);
 
     const [RegisterLogin, setRegisterLogin] = React.useState(false);
 
@@ -65,8 +67,25 @@ const Register = () => {
                 console.log(token);
 
                 if (!token) return false;
+
                 authService.setSession(token);
 
+                const roleResponse = await fetch(
+                    "https://localhost:7254/auth/role",
+                    {
+                        method: "GET",
+                        headers: {
+                            "content-type": "application/json",
+                            Authorization: `Bearer ${
+                                authService.getSession().token
+                            }`,
+                        },
+                    }
+                );
+                const role = await roleResponse.json();
+                setRole(role);
+
+                console.log(role);
                 console.log(token, response.status);
                 return token;
             } else {
