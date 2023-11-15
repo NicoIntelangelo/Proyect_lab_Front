@@ -2,9 +2,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
-    Navigate,
-    RouterProvider,
-    createBrowserRouter,
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
 
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
@@ -14,42 +14,47 @@ import Register from "./pages/Register/Register";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import MainLayout from "./components/mainLayout/MainLayout";
 import AdminPage from "./pages/admin/AdminPage";
+import Cart from "./pages/cart/Cart";
 
 function App() {
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      element: <MainLayout />,
+      children: [
+        { path: "/", element: <Navigate to="/home" /> },
         {
-            element: <MainLayout />,
-            children: [
-                { path: "/", element: <Navigate to="/home" /> },
-                {
-                    path: "/ingresar",
-                    element: <Register />,
-                },
-                {
-                    path: "/home",
-                    element: <Home />,
-                },
-                {
-                    path: "/shop/:category",
-                    element: <Shop />,
-                },
-                {
-                    path: "/detail/:id",
-                    element: <ProductDetail />,
-                },
-                {
-                    path: "/admin",
-                    element: <AdminPage />,
-                },
-                {
-                    path: "*",
-                    element: <PageNotFound />,
-                },
-            ],
+          path: "/ingresar",
+          element: <Register />,
         },
-    ]);
+        {
+          path: "/home",
+          element: <Home />,
+        },
+        {
+          path: "/shop/:category",
+          element: <Shop />,
+        },
+        {
+          path: "/detail/:id",
+          element: <ProductDetail />,
+        },
+        {
+          path: "/admin",
+          element: <AdminPage />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "*",
+          element: <PageNotFound />,
+        },
+      ],
+    },
+  ]);
 
-    return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
