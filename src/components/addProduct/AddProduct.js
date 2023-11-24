@@ -13,8 +13,11 @@ import {
 } from "@nextui-org/react";
 
 import { categories } from "../../assets/productConfig/Categories";
+import AlertComponent from "../alertComponent/AlertComponent";
+import AuthService from "../../services/authentication/auth.service";
 
-export const AddProduct = ({ onProductAdded }) => {
+export const AddProduct = () => {
+    const authService = new AuthService();
     const { theme } = useContext(ThemeContext);
 
     const [renderKey, setRenderKey] = useState(0); // Agregar un estado para forzar la renderización
@@ -61,22 +64,73 @@ export const AddProduct = ({ onProductAdded }) => {
         setRenderKey(renderKey + 1); // Forzar la renderización del componente incrementando el valor de renderKey
     };
 
-    const addProductHandler = (event) => {
-        event.preventDefault();
-        const newProduct = {
-            id: 0,
-            brand: brand,
-            productName: productName,
-            category: category,
-            sizes: sizes,
-            price: price,
-            discount: discount,
-            image: image,
-            isNewArticle: newArticle,
-        };
-        onProductAdded(newProduct);
-        console.log(newProduct);
-        clearForm();
+    //////////////////////////////////////////////////////////////////////////////
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertButtonMessage, setAlertButtonMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessage = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlert(true);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
+    //////////////////////////////////////////////////////////////////////////
+
+    const addProductHandler = async (product) => {
+        try {
+            console.log(authService.isLoggedIn());
+            if (authService.isLoggedIn() !== true) {
+                showAlertWithMessage(
+                    "Debe Iniciar sesion para realizar esta accion",
+                    "Volver"
+                );
+                return false;
+            }
+
+            const response = await fetch("https://localhost:7254/products", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${authService.getSession().token}`,
+                },
+                body: JSON.stringify({
+                    id: 0,
+                    brand: brand,
+                    productName: productName,
+                    category: category,
+                    sizes: sizes,
+                    price: price,
+                    discount: discount,
+                    image: image,
+                    isNewArticle: newArticle,
+                }),
+            });
+
+            if (response.status === 201) {
+                const product = await response.json();
+                console.log(product, response.status);
+                showAlertWithMessage("Producto cargado con exito", "Continuar");
+                clearForm();
+                return product;
+            } else {
+                showAlertWithMessage(
+                    "Hubo un problema al intentar cargar el Producto",
+                    "Volver"
+                );
+                throw new Error("La respuesta del servidor no fue exitosa");
+            }
+        } catch (error) {
+            showAlertWithMessage(
+                "Hubo un problema al intentar cargar el Producto",
+                "Volver"
+            );
+            console.log(error);
+        }
     };
 
     return (
@@ -93,6 +147,15 @@ export const AddProduct = ({ onProductAdded }) => {
                       }
             }
         >
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    />
+                )}
+            </div>
             <h2 className="mt-0 ">Cargar Producto</h2>
 
             <div className="ap-product-name">

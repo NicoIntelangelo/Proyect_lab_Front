@@ -18,16 +18,44 @@ import {
 
 import { categories } from "../../assets/productConfig/Categories";
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import AlertComponent from "../alertComponent/AlertComponent";
+import AuthService from "../../services/authentication/auth.service";
 
-const EditProduct = ({ onProductEdit }) => {
+const EditProduct = () => {
+    const navigate = useNavigate();
+    const authService = new AuthService();
     const { theme } = useContext(ThemeContext);
+    const params = useParams();
 
     function convertStringToList(str) {
         const elements = str.split(",").map((element) => element.trim());
         return elements;
     }
 
-    const editProductId = 7;
+    const editProductId = params.id;
+
+    //////////////////////////////////////////////////////////////////////////////
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertButtonMessage, setAlertButtonMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessage = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlert(true);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
+    const handleClose = () => {
+        setShowAlert(false);
+        navigate("/shop/all");
+    };
+
+    //////////////////////////////////////////////////////////////////////////
 
     useEffect(() => {
         fetch("https://localhost:7254/products/id/" + editProductId, {
@@ -50,7 +78,7 @@ const EditProduct = ({ onProductEdit }) => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [editProductId]);
 
     const [sizesList, setSizesList] = React.useState([]);
     const sizes = sizesList.join(", ");
@@ -82,31 +110,80 @@ const EditProduct = ({ onProductEdit }) => {
         setImage(event.target.value);
     };
 
-    // const clearForm = () => {
-    //     setImage("");
-    //     setBrand("");
-    //     setProductName("");
-    //     setCategory("");
-    //     setPrice(0);
-    //     setDiscount(0);
-    //     setNewArticle(false);
-    //     setSizesList([]);
-    // };
+    const editProductHandler = async () => {
+        try {
+            const response = await fetch("https://localhost:7254/products", {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${authService.getSession().token}`,
+                },
+                body: JSON.stringify({
+                    id: editProductId,
+                    brand: brand,
+                    productName: productName,
+                    category: category,
+                    sizes: sizes,
+                    price: price,
+                    discount: discount,
+                    image: image,
+                    isNewArticle: newArticle,
+                }),
+            });
+            if (response.status === 200) {
+                const product = await response.json();
+                console.log(product, response.status);
+                showAlertWithMessage("Producto cargado con exito", "Continuar");
+                return product;
+            } else {
+                showAlertWithMessage(
+                    "Problemas al intentar editar el producto",
+                    "Volver"
+                );
+                throw new Error("La respuesta del servidor no fue exitosa");
+            }
+        } catch (error) {
+            showAlertWithMessage(
+                "Problemas al intentar editar el producto",
+                "Volver"
+            );
+            console.log(error);
+        }
+    };
 
-    const editProductHandler = (event) => {
-        event.preventDefault();
-        const editProduct = {
-            id: editProductId,
-            brand: brand,
-            productName: productName,
-            category: category,
-            sizes: sizes,
-            price: price,
-            discount: discount,
-            image: image,
-            isNewArticle: newArticle,
-        };
-        onProductEdit(editProduct);
+    const deleteProductHandler = async () => {
+        try {
+            const response = await fetch(
+                "https://localhost:7254/products/" + editProductId,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${
+                            authService.getSession().token
+                        }`,
+                    },
+                }
+            );
+            if (response.status === 200) {
+                showAlertWithMessage(
+                    "Producto se eliminó con exito",
+                    "Continuar"
+                );
+            } else {
+                showAlertWithMessage(
+                    "Problemas al intentar eliminar el producto",
+                    "Volver"
+                );
+                throw new Error("La respuesta del servidor no fue exitosa");
+            }
+        } catch (error) {
+            showAlertWithMessage(
+                "Problemas al intentar eliminar el producto",
+                "Volver"
+            );
+            console.log(error);
+        }
     };
 
     return (
@@ -122,6 +199,23 @@ const EditProduct = ({ onProductEdit }) => {
                       }
             }
         >
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    >
+                        <Button
+                            radius="full"
+                            className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
+                            onClick={handleClose}
+                        >
+                            Continuar
+                        </Button>
+                    </AlertComponent>
+                )}
+            </div>
             <h2 className="mt-0 ">Editar Producto</h2>
 
             <div className="ap-product-name">
@@ -301,6 +395,7 @@ const EditProduct = ({ onProductEdit }) => {
                         className="delete-item"
                         color="danger"
                         aria-labelledby="menu-label"
+                        onClick={deleteProductHandler}
                     >
                         Eliminar Producto
                     </DropdownItem>

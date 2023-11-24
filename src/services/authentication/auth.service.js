@@ -4,7 +4,6 @@ class AuthService {
         if (session.expiresIn) {
             const expirationDate = new Date(session.expiresIn);
             const currentDate = new Date();
-            debugger;
             if (currentDate > expirationDate) {
                 return false;
             } else {

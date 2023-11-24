@@ -9,9 +9,33 @@ import { EyeFilledIcon } from "../../assets/icons/EyeFilledIcon";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthService from "../../services/authentication/auth.service";
+import { RoleContext } from "../../services/authentication/role.context";
+import AlertComponent from "../alertComponent/AlertComponent";
 
 const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
     const { theme } = useContext(ThemeContext);
+    const { setRole } = useContext(RoleContext);
+    const authService = new AuthService();
+    const navigate = useNavigate();
+
+    //////////////////////////////////////////////////////////////////////////////
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertButtonMessage, setAlertButtonMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessage = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlert(true);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
+    //////////////////////////////////////////////////////////////////////////
 
     const [isVisible, setIsVisible] = useState(false);
     const [email, setEmail] = useState("");
@@ -25,13 +49,71 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
         setPassword(event.target.value);
     };
 
-    const authenticateUser = (event) => {
-        event.preventDefault();
-        const authUser = {
-            email: email,
-            password: password,
-        };
-        authentication(authUser);
+    const authenticateUser = async () => {
+        try {
+            if (password.length <= 0 || email.length <= 0) {
+                showAlertWithMessage(
+                    "Ingrese todos los datos para poder ingresar",
+                    "Volver"
+                );
+                return false;
+            }
+            const response = await fetch(
+                "https://localhost:7254/auth/authenticate",
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        accept: "*/*",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                }
+            );
+
+            if (response.ok) {
+                const token = await response.text();
+                console.log(token);
+
+                if (!token) return false;
+
+                authService.setSession(token);
+
+                const roleResponse = await fetch(
+                    "https://localhost:7254/user/role",
+                    {
+                        method: "GET",
+                        headers: {
+                            "content-type": "application/json",
+                            Authorization: `Bearer ${
+                                authService.getSession().token
+                            }`,
+                        },
+                    }
+                );
+                const role = await roleResponse.json();
+                setRole(role);
+
+                console.log(role);
+                console.log(token, response.status);
+                navigate("/home");
+                return token;
+            } else {
+                showAlertWithMessage(
+                    "Hubo un problema al intentar ingresar, intentar nuevamente",
+                    "Volver"
+                );
+                throw new Error("La respuesta del servidor no fue exitosa");
+            }
+        } catch (error) {
+            console.log(error);
+            showAlertWithMessage(
+                "Hubo un problema al intentar ingresar, intentar nuevamente",
+                "Volver"
+            );
+        }
     };
 
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -43,6 +125,15 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                     : "l-container"
             }
         >
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    />
+                )}
+            </div>
             <h2>Ingresar</h2>
             <div className="l-input-container">
                 <div id="l-email">

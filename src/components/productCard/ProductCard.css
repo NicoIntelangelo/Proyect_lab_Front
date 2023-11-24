@@ -1,10 +1,10 @@
 .pc-container {
     width: 300px;
-    height: 510px;
+    height: auto;
 
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 370px 40px 40px 60px;
+    grid-template-rows: 370px 40px 40px auto;
     justify-content: center;
     justify-items: center;
     align-content: center;
@@ -17,6 +17,11 @@
     border-radius: 15px;
 
     margin: 10px;
+}
+.pc-container:hover {
+    -webkit-box-shadow: 0 0 19px 6.5px #888888;
+    -moz-box-shadow: 0 0 19px 6.5px #888888;
+    box-shadow: 0 0 19px 6.5px #888888;
 }
 .pc-container-dark {
     -webkit-box-shadow: 3px 3px 10px 3px #646464;
@@ -65,6 +70,7 @@
 }
 
 .buy-button {
+    margin-bottom: 7px;
     grid-row: 4;
     grid-column: span 2;
 }

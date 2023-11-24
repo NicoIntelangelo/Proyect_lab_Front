@@ -5,96 +5,13 @@ import RegisterComponent from "../../components/registerComponent/RegisterCompon
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import LogInComponent from "../../components/logIn/LogInComponent";
-import AuthService from "../../services/authentication/auth.service";
-import { RoleContext } from "../../services/authentication/role.context";
 
 const Register = () => {
-    const authService = new AuthService();
     const { theme } = useContext(ThemeContext);
-    const { setRole } = useContext(RoleContext);
 
     const [RegisterLogin, setRegisterLogin] = React.useState(false);
 
     const toggleRegisterLogin = () => setRegisterLogin(!RegisterLogin);
-
-    const addUserHandler = async (user) => {
-        try {
-            const response = await fetch("https://localhost:7254/auth", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: user.name,
-                    email: user.email,
-                    direction: "string",
-                    password: user.password,
-                    role: 0,
-                }),
-            });
-
-            if (response.ok) {
-                const user = await response.json();
-                console.log(user, response.status);
-                return user;
-            } else {
-                throw new Error("La respuesta del servidor no fue exitosa");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const authentication = async (user) => {
-        try {
-            const response = await fetch(
-                "https://localhost:7254/auth/authenticate",
-                {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                        accept: "*/*",
-                    },
-                    body: JSON.stringify({
-                        email: user.email,
-                        password: user.password,
-                    }),
-                }
-            );
-
-            if (response.ok) {
-                const token = await response.text();
-                console.log(token);
-
-                if (!token) return false;
-
-                authService.setSession(token);
-
-                const roleResponse = await fetch(
-                    "https://localhost:7254/auth/role",
-                    {
-                        method: "GET",
-                        headers: {
-                            "content-type": "application/json",
-                            Authorization: `Bearer ${
-                                authService.getSession().token
-                            }`,
-                        },
-                    }
-                );
-                const role = await roleResponse.json();
-                setRole(role);
-
-                console.log(role);
-                console.log(token, response.status);
-                return token;
-            } else {
-                throw new Error("La respuesta del servidor no fue exitosa");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     return (
         <div
@@ -108,13 +25,9 @@ const Register = () => {
                 {RegisterLogin === true ? (
                     <RegisterComponent
                         toggleRegisterLogin={toggleRegisterLogin}
-                        onUserAdded={addUserHandler}
                     />
                 ) : (
-                    <LogInComponent
-                        toggleRegisterLogin={toggleRegisterLogin}
-                        authentication={authentication}
-                    />
+                    <LogInComponent toggleRegisterLogin={toggleRegisterLogin} />
                 )}
             </div>
         </div>
