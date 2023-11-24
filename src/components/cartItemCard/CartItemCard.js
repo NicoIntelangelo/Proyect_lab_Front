@@ -1,70 +1,97 @@
 import { Button } from "react-bootstrap";
 import { useCart } from "../../services/cartContext/cart.context";
 import "./CartItemCard.css";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const CartItemCard = ({ product }) => {
-    const { dispatch } = useCart();
+  const { theme } = useContext(ThemeContext);
+  const { dispatch } = useCart();
+  const navigate = useNavigate();
+  const itemDetail = "/detail/" + product.id;
 
-    const handleRemoveItem = (productId) => {
-        dispatch({ type: "REMOVE_FROM_CART", payload: { id: productId } });
-    };
+  const goToDetail = () => {
+    navigate(itemDetail);
+  };
 
-    const handleUpdateQuantity = (productId, productQuantity, action) => {
-        dispatch({
-            type: "UPDATE_QUANTITY",
-            payload: {
-                id: productId,
-                quantity: productQuantity,
-                action: action,
-            },
-        });
-    };
+  const handleRemoveItem = (productId) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: { id: productId } });
+  };
 
-    return (
-        <div className="cart-item-card">
-            <img className="cart-item-image" alt="" src={product.image} />
-            <div className="cart-item-title">
-                <h3>
-                    {product.brand} {product.productName}
-                </h3>
-            </div>
-            <div className="cart-item-quantity">
-                <label>Cantidad: {product.quantity} </label>
-            </div>
+  const handleUpdateQuantity = (productId, productQuantity, action) => {
+    dispatch({
+      type: "UPDATE_QUANTITY",
+      payload: {
+        id: productId,
+        quantity: productQuantity,
+        action: action,
+      },
+    });
+  };
 
-            <div className="cart-item-add-one-button">
-                <Button
-                    onClick={() =>
-                        handleUpdateQuantity(
-                            product.id,
-                            product.quantity + 1,
-                            "agregar"
-                        )
-                    }
-                >
-                    Agregar 1
-                </Button>
-            </div>
-            <div className="cart-item-minus-one-button">
-                <Button
-                    onClick={() =>
-                        handleUpdateQuantity(
-                            product.id,
-                            product.quantity - 1,
-                            "eliminar"
-                        )
-                    }
-                >
-                    Eliminar 1
-                </Button>
-            </div>
-            <div className="cart-item-delete-button">
-                <Button onClick={() => handleRemoveItem(product.id)}>
-                    Eliminar
-                </Button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="cart-item-card">
+      <img className="cart-item-image" alt="" src={product.image} />
+
+      <h6 className="cart-item-title" onClick={goToDetail}>
+        {product.brand} {product.productName}
+      </h6>
+
+      {product.quantity < 10 ? (
+        <div className="cart-item-quantity">Cantidad:</div>
+      ) : (
+        <div className="cart-item-quantity-max">Máxima Cantidad</div>
+      )}
+
+      <div className="cart-item-price">${product.discountAppliedPrice}</div>
+      <div className="quantity-input">
+        <Button
+          className={
+            theme === "dark" ? "quantity-button-dark" : "quantity-button"
+          }
+          variant="secondary"
+          onClick={() =>
+            handleUpdateQuantity(product.id, product.quantity - 1, "eliminar")
+          }
+          disabled={product.quantity > 1 ? false : true}
+        >
+          -
+        </Button>
+
+        <input
+          className={
+            theme === "dark"
+              ? "quantity-input-number-dark"
+              : "quantity-input-number"
+          }
+          readOnly={true}
+          value={product.quantity}
+          type="text"
+        />
+
+        <Button
+          className={
+            theme === "dark" ? "quantity-button-dark" : "quantity-button"
+          }
+          variant="secondary"
+          onClick={() =>
+            handleUpdateQuantity(product.id, product.quantity + 1, "agregar")
+          }
+          disabled={product.quantity < 10 ? false : true}
+        >
+          +
+        </Button>
+      </div>
+
+      <Button
+        onClick={() => handleRemoveItem(product.id)}
+        className="cart-item-delete-button"
+      >
+        Eliminar
+      </Button>
+    </div>
+  );
 };
 
 export default CartItemCard;

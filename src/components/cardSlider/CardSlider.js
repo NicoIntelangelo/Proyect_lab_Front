@@ -15,57 +15,48 @@ import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 
 const CardSlider = ({ children }) => {
-    const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
-    const width = window.innerWidth;
-    var slides = 0;
+  const width = window.innerWidth;
+  var slides = 0;
 
-    switch (true) {
-        case width > 300 && width < 600:
-            slides = 1;
-            break;
-        case width > 600 && width < 800:
-            slides = 2;
-            break;
-        case width > 800 && width < 1200:
-            slides = 3;
-            break;
-        case width > 1200:
-            slides = 4;
-            break;
-        default:
-            slides = 2;
-    }
+  switch (true) {
+    case width > 300 && width < 600:
+      slides = 1;
+      break;
+    case width > 600 && width < 800:
+      slides = 2;
+      break;
+    case width > 800 && width < 1200:
+      slides = 3;
+      break;
+    case width > 1200:
+      slides = 4;
+      break;
+    default:
+      slides = 2;
+  }
 
-    return (
-        <>
-            <Swiper
-                //onSlideChange={() => console.log("slide change")}
-                modules={[Navigation, Pagination, Keyboard]}
-                slidesPerView={slides}
-                spaceBetween={0}
-                navigation={true}
-                //pagination={true}
-                keyboard={true}
-                className="mySwiper"
-            >
-                {children.map((child, index) => {
-                    return (
-                        <SwiperSlide
-                            key={index}
-                            className={
-                                theme === "dark"
-                                    ? "swiper-slide swiper-slide-dark"
-                                    : "swiper-slide"
-                            }
-                        >
-                            {child}
-                        </SwiperSlide>
-                    );
-                })}
-            </Swiper>
-        </>
-    );
+  return (
+    <>
+      <Swiper
+        className={theme === "dark" ? "swiper-dark" : "swiper"}
+        modules={[Navigation, Pagination, Keyboard]}
+        slidesPerView={slides}
+        spaceBetween={0}
+        navigation={true}
+        keyboard={true}
+      >
+        {children.map((child, index) => {
+          return (
+            <SwiperSlide className="swiper-slide" key={index}>
+              {child}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </>
+  );
 };
 
 export default CardSlider;

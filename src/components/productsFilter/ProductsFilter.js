@@ -51,7 +51,9 @@ const ProductsFilter = ({
           onValueChange={setBrand}
         >
           {brands.map((cat) => (
-            <Checkbox value={cat.value}>{cat.label}</Checkbox>
+            <Checkbox key={cat.value} value={cat.value}>
+              {cat.label}
+            </Checkbox>
           ))}
         </CheckboxGroup>
 
