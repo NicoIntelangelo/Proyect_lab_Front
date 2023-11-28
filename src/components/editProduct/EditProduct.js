@@ -113,7 +113,7 @@ const EditProduct = () => {
 
     const editProductHandler = async () => {
         try {
-            const response = await fetch("https://localhost:7254/products", {
+            const response = await fetch(BACK_END_URL + "/products", {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -155,7 +155,7 @@ const EditProduct = () => {
     const deleteProductHandler = async () => {
         try {
             const response = await fetch(
-                "https://localhost:7254/products/" + editProductId,
+                BACK_END_URL + "/products/" + editProductId,
                 {
                     method: "DELETE",
                     headers: {
