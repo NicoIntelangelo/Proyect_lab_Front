@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AlertComponent from "../alertComponent/AlertComponent";
 import AuthService from "../../services/authentication/auth.service";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const EditProduct = () => {
     const navigate = useNavigate();
@@ -58,7 +59,7 @@ const EditProduct = () => {
     //////////////////////////////////////////////////////////////////////////
 
     useEffect(() => {
-        fetch("https://localhost:7254/products/id/" + editProductId, {
+        fetch(BACK_END_URL + "/products/id/" + editProductId, {
             headers: {
                 Accept: "application/json",
             },

@@ -8,13 +8,14 @@ import InfoBaner from "../../components/infoBaner/InfoBaner";
 import Spinner1 from "../../components/spinner/Spinner1";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { Divider } from "@nextui-org/react";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const Home = () => {
     const [newProducts, setNewProducts] = useState([]);
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        fetch("https://localhost:7254/products/new", {
+        fetch(BACK_END_URL + "/products/new", {
             headers: {
                 Accept: "application/json",
             },

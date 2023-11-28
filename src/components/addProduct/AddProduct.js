@@ -15,6 +15,7 @@ import {
 import { categories } from "../../assets/productConfig/Categories";
 import AlertComponent from "../alertComponent/AlertComponent";
 import AuthService from "../../services/authentication/auth.service";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 export const AddProduct = () => {
     const authService = new AuthService();
@@ -92,7 +93,7 @@ export const AddProduct = () => {
                 return false;
             }
 
-            const response = await fetch("https://localhost:7254/products", {
+            const response = await fetch(BACK_END_URL + "/products", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

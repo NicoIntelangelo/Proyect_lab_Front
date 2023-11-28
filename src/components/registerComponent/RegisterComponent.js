@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { EyeSlashFilledIcon } from "../../assets/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "../../assets/icons/EyeFilledIcon";
 import AlertComponent from "../alertComponent/AlertComponent";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const RegisterComponent = ({ toggleRegisterLogin }) => {
     const { theme } = useContext(ThemeContext);
@@ -73,7 +74,7 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
                 );
                 return false;
             }
-            const response = await fetch("https://localhost:7254/auth", {
+            const response = await fetch(BACK_END_URL + "/auth", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

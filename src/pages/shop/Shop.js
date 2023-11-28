@@ -8,6 +8,7 @@ import Products from "../../components/products/Products";
 import ProductsFilter from "../../components/productsFilter/ProductsFilter";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const Shop = () => {
     const [originalProducts, setOriginalProducts] = useState([]);
@@ -20,7 +21,7 @@ const Shop = () => {
     const params = useParams();
 
     useEffect(() => {
-        fetch("https://localhost:7254/products/" + params.category, {
+        fetch(BACK_END_URL + "/products/" + params.category, {
             headers: {
                 Accept: "application/json",
             },

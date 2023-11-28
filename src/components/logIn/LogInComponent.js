@@ -59,7 +59,7 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                 return false;
             }
             const response = await fetch(
-                "https://localhost:7254/auth/authenticate",
+                "http://e-commerce1.somee.com/auth/authenticate",
                 {
                     method: "POST",
                     headers: {
@@ -82,7 +82,7 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                 authService.setSession(token);
 
                 const roleResponse = await fetch(
-                    "https://localhost:7254/user/role",
+                    "http://e-commerce1.somee.com/user/role",
                     {
                         method: "GET",
                         headers: {
