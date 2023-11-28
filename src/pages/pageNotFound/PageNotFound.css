@@ -1,15 +1,17 @@
 .container404-light {
-  padding-top: 12%;
-  padding-bottom: 12%;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    min-height: 90vh;
 }
 
 .container404-dark {
-  padding-top: 12%;
-  padding-bottom: 12%;
-  background-color: black;
-  color: white;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    background-color: black;
+    color: white;
+    min-height: 90vh;
 }
 
 .centered-column {
-  text-align: center;
+    text-align: center;
 }

@@ -162,7 +162,7 @@ const Header = () => {
                             {role === 2 ? (
                                 <Nav.Link
                                     as={Link}
-                                    to="/admin"
+                                    to="/superadmin"
                                     style={
                                         theme === "dark"
                                             ? {

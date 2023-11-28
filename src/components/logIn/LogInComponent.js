@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/authentication/auth.service";
 import { RoleContext } from "../../services/authentication/role.context";
 import AlertComponent from "../alertComponent/AlertComponent";
-import { useCart } from "../../services/cartContext/cart.context";
+//import { useCart } from "../../services/cartContext/cart.context";
 import BACK_END_URL from "../../assets/BackendUrl";
 
 const LogInComponent = ({ toggleRegisterLogin, authentication }) => {

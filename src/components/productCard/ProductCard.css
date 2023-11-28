@@ -1,6 +1,7 @@
 .pc-container {
     width: 300px;
     height: auto;
+    max-height: 500px;
 
     display: grid;
     grid-template-columns: 50% 50%;

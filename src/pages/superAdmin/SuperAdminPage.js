@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
-import "./AdminPage.css";
+import "./SuperAdminPage.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { Navigate } from "react-router-dom";
 import { RoleContext } from "../../services/authentication/role.context";
 import { Link } from "react-router-dom";
 
-const AdminPage = ({ children }) => {
+const SuperAdminPage = ({ children }) => {
     const { theme } = useContext(ThemeContext);
     const { role } = useContext(RoleContext);
 
-    if (role === 2 || role === 1) {
+    if (role === 2) {
         return (
             <div
                 className={
                     theme === "dark"
-                        ? "ap-container ap-container-dark dark"
-                        : "ap-container"
+                        ? "sap-container sap-container-dark dark"
+                        : "sap-container"
                 }
             >
-                <div className="ap-sub-container">
-                    <h1 className="">AdminPage</h1>
+                <div className="sap-sub-container">
+                    <h1 className="">SuperAdminPage</h1>
                     {children}
                 </div>
             </div>
@@ -29,4 +29,4 @@ const AdminPage = ({ children }) => {
     }
 };
 
-export default AdminPage;
+export default SuperAdminPage;

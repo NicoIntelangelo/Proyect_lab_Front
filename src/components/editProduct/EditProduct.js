@@ -73,7 +73,7 @@ const EditProduct = () => {
                 setPrice(product.price);
                 setDiscount(product.discount);
                 setImage(product.image);
-                setNewArticle(product.newArticle);
+                setNewArticle(product.isNewArticle);
                 setSizesList(convertStringToList(product.sizes));
             })
             .catch((error) => {
