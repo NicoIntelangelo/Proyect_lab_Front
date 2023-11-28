@@ -14,11 +14,12 @@ import AuthService from "../../services/authentication/auth.service";
 import { RoleContext } from "../../services/authentication/role.context";
 import AlertComponent from "../alertComponent/AlertComponent";
 import { useCart } from "../../services/cartContext/cart.context";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
     const { theme } = useContext(ThemeContext);
     const { setRole } = useContext(RoleContext);
-    const { dispatch } = useCart();
+    //const { dispatch } = useCart();
     const authService = new AuthService();
     const navigate = useNavigate();
 
@@ -60,20 +61,17 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                 );
                 return false;
             }
-            const response = await fetch(
-                "http://e-commerce1.somee.com/auth/authenticate",
-                {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                        accept: "*/*",
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                    }),
-                }
-            );
+            const response = await fetch(BACK_END_URL + "/auth/authenticate", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                    accept: "*/*",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
 
             if (response.ok) {
                 const token = await response.text();
@@ -83,18 +81,15 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
 
                 authService.setSession(token);
 
-                const roleResponse = await fetch(
-                    "http://e-commerce1.somee.com/user/role",
-                    {
-                        method: "GET",
-                        headers: {
-                            "content-type": "application/json",
-                            Authorization: `Bearer ${
-                                authService.getSession().token
-                            }`,
-                        },
-                    }
-                );
+                const roleResponse = await fetch(BACK_END_URL + "/user/role", {
+                    method: "GET",
+                    headers: {
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${
+                            authService.getSession().token
+                        }`,
+                    },
+                });
                 const role = await roleResponse.json();
                 setRole(role);
 
