@@ -5,6 +5,7 @@ import CartComponent from "../../components/cartComponent/CartComponent";
 
 const Cart = () => {
   const { theme } = useContext(ThemeContext);
+  console.log("cart");
 
   return (
     <>

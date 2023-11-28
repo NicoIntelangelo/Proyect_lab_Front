@@ -1,36 +1,108 @@
 .cart-item-card {
-    display: grid;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    height: 150px;
-    grid-template-columns: 150px auto 100px 100px 100px;
-    grid-auto-rows: minmax(50px, auto);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 150px;
+  grid-template-columns: 150px auto 150px;
+  grid-auto-rows: minmax(50px, auto);
+  padding-right: 50px;
 }
-.cart-item-add-one-button {
-    grid-column: 3;
-    grid-row: 2;
+.quantity-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 3;
+  grid-row: 2;
 }
-.cart-item-minus-one-button {
-    grid-column: 4;
-    grid-row: 2;
-}
-.cart-item-image {
-    grid-column: 1;
-    grid-row: 2;
 
-    height: 200px;
-    border-radius: 15px 0 0 15px;
+.quantity-button {
+  height: 2.5rem;
+  width: 3rem;
+
+  border: none;
+  background: #f3f3f3;
+  color: #000000;
+  border-radius: 0;
+
+  cursor: pointer;
+}
+
+.quantity-button-dark {
+  height: 2.5rem;
+  width: 3rem;
+
+  border: none;
+  background: #646464;
+  color: #000000;
+  border-radius: 0;
+
+  cursor: pointer;
+}
+
+.quantity-button:hover {
+  background: #e5e4e4;
+  color: #000000;
+}
+
+.quantity-button-dark:hover {
+  background: #303030;
+}
+
+.quantity-input-number {
+  width: 4rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  border: none;
+
+  text-align: center;
+}
+
+.quantity-input-number-dark {
+  width: 4rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  background-color: rgb(10, 10, 10);
+
+  text-align: center;
+}
+
+.cart-item-image {
+  grid-column: 1;
+  grid-row: 2;
+  width: 120px;
+  border-radius: 15px;
+}
+.cart-item-price {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  grid-column: 2;
+  grid-row: 3;
 }
 .cart-item-delete-button {
-    grid-column: 5;
-    grid-row: 2;
+  background-color: rgb(209, 2, 2);
+  border: none;
+  grid-column: 3;
+  grid-row: 3;
+}
+.cart-item-delete-button:hover {
+  background-color: rgb(73, 0, 0);
 }
 .cart-item-quantity {
-    grid-column: 2;
-    grid-row: 3;
+  grid-column: 3;
+  grid-row: 1;
+}
+.cart-item-quantity-max {
+  text-decoration: line-through;
+  grid-column: 3;
+  grid-row: 1;
 }
 .cart-item-title {
-    grid-column: 2;
-    grid-row: 1;
+  margin-bottom: 0;
+  justify-self: flex-start;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+@media (max-width: 700px) {
 }

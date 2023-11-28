@@ -13,10 +13,12 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/authentication/auth.service";
 import { RoleContext } from "../../services/authentication/role.context";
 import AlertComponent from "../alertComponent/AlertComponent";
+import { useCart } from "../../services/cartContext/cart.context";
 
 const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
     const { theme } = useContext(ThemeContext);
     const { setRole } = useContext(RoleContext);
+    const { dispatch } = useCart();
     const authService = new AuthService();
     const navigate = useNavigate();
 

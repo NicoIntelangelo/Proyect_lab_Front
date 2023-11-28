@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   const { dispatch } = useCart();
   const params = useParams();
-  const addToCartHandler = () => {
+  const addToCartHandler = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
 
@@ -38,7 +38,9 @@ const ProductDetail = () => {
             ${((product.price / 100) * (100 - product.discount)).toFixed(2)}
           </h4>
           <h5>${product.price.toFixed(2)}</h5>
-          <Button onClick={addToCartHandler}>Agregar a carrito</Button>
+          <Button onClick={() => addToCartHandler(product)}>
+            Agregar a carrito
+          </Button>
         </div>
       ) : (
         <p>Cargando...</p>
