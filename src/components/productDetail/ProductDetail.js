@@ -10,9 +10,6 @@ const ProductDetail = () => {
     const [product, setProduct] = useState();
     const { dispatch } = useCart();
     const params = useParams();
-    const addToCartHandler = (product) => {
-        dispatch({ type: "ADD_TO_CART", payload: product });
-    };
 
     useEffect(() => {
         fetch(BACK_END_URL + "/products/id/" + params.id, {
@@ -27,7 +24,16 @@ const ProductDetail = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, [params]);
+    }, [params.id]); // Agrega params.id como dependencia para que useEffect se ejecute cuando cambie
+
+    const addToCartHandler = () => {
+        // Verifica si el producto existe antes de agregarlo al carrito
+
+        if (product) {
+            dispatch({ type: "ADD_TO_CART", payload: product });
+        }
+    };
+
     return (
         <div>
             {product ? (
@@ -43,7 +49,7 @@ const ProductDetail = () => {
                         ).toFixed(2)}
                     </h4>
                     <h5>${product.price.toFixed(2)}</h5>
-                    <Button onClick={() => addToCartHandler(product)}>
+                    <Button onClick={addToCartHandler}>
                         Agregar a carrito
                     </Button>
                 </div>

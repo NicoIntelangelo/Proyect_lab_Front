@@ -23,66 +23,41 @@ const cartReducer = (state, action) => {
 
         case "ADD_TO_CART":
             const newItem = action.payload;
-            var cartArray = [];
 
             // Buscar si el elemento ya existe en el carrito
             const existingItemIndex = state.findIndex(
                 (item) => item.id === newItem.id
             );
-            console.log("existe " + existingItemIndex);
 
             if (existingItemIndex !== -1) {
                 // El elemento ya está en el carrito, aumentar la cantidad
-                cartArray = state.map((item) =>
-                    item.id === action.payload.id
-                        ? {
-                              id: item.id,
-                              image: item.image,
-                              brand: item.brand,
-                              price: item.price,
-                              discount: item.discount,
-                              discountAppliedPrice: item.discountAppliedPrice,
-                              productName: item.productName,
-                              quantity: item.quantity + 1,
-                          }
-                        : {
-                              id: action.payload.id,
-                              image: action.payload.image,
-                              brand: action.payload.brand,
-                              price: action.payload.price,
-                              discount: action.payload.discount,
-                              discountAppliedPrice:
-                                  action.payload.price -
-                                  (action.payload.price *
-                                      action.payload.discount) /
-                                      100,
-                              productName: action.payload.productName,
-                              quantity: 1,
-                          }
-                );
+                const updatedState = [...state];
+                updatedState[existingItemIndex] = {
+                    ...updatedState[existingItemIndex],
+                    quantity: updatedState[existingItemIndex].quantity + 1,
+                };
+
+                localStorage.setItem("Cart", JSON.stringify(updatedState));
+                return updatedState;
             } else {
                 // El elemento no está en el carrito, agregarlo
-                cartArray = [
-                    ...state,
-                    {
-                        id: action.payload.id,
-                        image: action.payload.image,
-                        brand: action.payload.brand,
-                        price: action.payload.price,
-                        discount: action.payload.discount,
-                        discountAppliedPrice:
-                            action.payload.price -
-                            (action.payload.price * action.payload.discount) /
-                                100,
-                        productName: action.payload.productName,
-                        quantity: 1,
-                    },
-                ];
-            }
+                const newCartItem = {
+                    id: newItem.id,
+                    image: newItem.image,
+                    brand: newItem.brand,
+                    price: newItem.price,
+                    discount: newItem.discount,
+                    discountAppliedPrice:
+                        newItem.price -
+                        (newItem.price * newItem.discount) / 100,
+                    productName: newItem.productName,
+                    quantity: 1,
+                };
 
-            console.log(cartArray);
-            localStorage.setItem("Cart", JSON.stringify(cartArray));
-            return cartArray;
+                const newState = [...state, newCartItem];
+                localStorage.setItem("Cart", JSON.stringify(newState));
+                return newState;
+            }
 
         case "LOAD_CART":
             var cartLoaded = Object.values(action.payload);
