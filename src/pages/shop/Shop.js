@@ -9,6 +9,7 @@ import ProductsFilter from "../../components/productsFilter/ProductsFilter";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/theme/theme.context";
 import BACK_END_URL from "../../assets/BackendUrl";
+import Spinner1 from "../../components/spinner/Spinner1";
 
 const Shop = () => {
     const [originalProducts, setOriginalProducts] = useState([]);
@@ -81,12 +82,22 @@ const Shop = () => {
                     onReset={handleReset}
                 />
                 <Divider orientation="vertical" />
-                <Products
+                {/* <Products
                     products={products}
                     brandFilter={brand}
                     maxPrice={maxPrice}
                     minPrice={minPrice}
-                />
+                /> */}
+                {products.length > 0 ? (
+                    <Products
+                        products={products}
+                        brandFilter={brand}
+                        maxPrice={maxPrice}
+                        minPrice={minPrice}
+                    />
+                ) : (
+                    <Spinner1 />
+                )}
             </div>
         </>
     );
