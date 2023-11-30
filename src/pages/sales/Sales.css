@@ -1,0 +1,27 @@
+.sale-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: fit-content;
+    position: relative;
+    flex-direction: column;
+}
+
+.sale-container-dark {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.sale-sub-container {
+    height: auto;
+    position: absolute;
+    top: 0;
+    margin-top: 39px;
+}
+
+.sale-cart-title {
+    position: absolute;
+    top: 0;
+    margin-top: 4px;
+}

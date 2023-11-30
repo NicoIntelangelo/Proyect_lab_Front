@@ -12,7 +12,7 @@ export const brands = [
         value: "Jordan",
     },
     {
-        label: "Bocajrs",
-        value: "Bocajrs",
+        label: "Kongo",
+        value: "kongo",
     },
 ];

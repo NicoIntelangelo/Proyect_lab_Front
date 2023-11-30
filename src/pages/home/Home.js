@@ -28,6 +28,7 @@ const Home = () => {
                 console.log(error);
             });
     }, []);
+
     const newProductsList = newProducts.map((product) => (
         <ProductCard
             key={product.id}

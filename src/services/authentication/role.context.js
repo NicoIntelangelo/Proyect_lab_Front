@@ -5,7 +5,7 @@ import { createContext } from "react";
 export const RoleContext = createContext();
 
 export const RoleContextProvider = ({ children }) => {
-    const [role, setRole] = useState(0);
+    const [role, setRole] = useState(-1);
 
     //0 = User
     //1 = Admin

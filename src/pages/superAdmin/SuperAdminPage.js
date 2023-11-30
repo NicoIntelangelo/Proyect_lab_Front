@@ -19,7 +19,7 @@ const SuperAdminPage = ({ children }) => {
                 }
             >
                 <div className="sap-sub-container">
-                    <h1 className="">SuperAdminPage</h1>
+                    <h1 className="">Gestión de administradores</h1>
                     {children}
                 </div>
             </div>

@@ -7,16 +7,35 @@ import ThemeSwitch from "../themeSwitch/ThemeSwitch";
 import "./Header.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { categories } from "../../assets/productConfig/Categories";
 import { RoleContext } from "../../services/authentication/role.context";
+import AuthService from "../../services/authentication/auth.service";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
-    const { role } = useContext(RoleContext);
+    const { role, setRole } = useContext(RoleContext);
+    const authService = new AuthService();
+    const navigate = useNavigate();
 
+    const [renderKey, setRenderKey] = useState(0); // Add state to force re-render
+
+    useEffect(() => {
+        setRenderKey(renderKey + 1);
+    }, [role]);
+
+    const logOut = () => {
+        authService.resetSession();
+        setRole(-1);
+        setRenderKey(renderKey + 1);
+        navigate("/home");
+    };
+
+    //console.log("header");
     return (
-        <>
+        <div>
             <Navbar
                 style={
                     theme === "dark"
@@ -29,6 +48,7 @@ const Header = () => {
                 }
                 expand="sm"
                 sticky="top"
+                key={renderKey}
             >
                 <Container fluid>
                     <Navbar.Brand as={Link} to="/home">
@@ -72,7 +92,16 @@ const Header = () => {
                                           }
                                 }
                             >
-                                Shop
+                                <img
+                                    class={
+                                        theme === "dark"
+                                            ? "logo-dark logo-hover"
+                                            : "logo-hover"
+                                    }
+                                    width="27"
+                                    src="https://img.icons8.com/fluency-systems-regular/48/online-store.png"
+                                    alt="online-store"
+                                />
                             </Nav.Link>
 
                             <NavDropdown
@@ -153,7 +182,16 @@ const Header = () => {
                                               }
                                     }
                                 >
-                                    Admin
+                                    <img
+                                        width="27"
+                                        class={
+                                            theme === "dark"
+                                                ? "logo-dark logo-hover"
+                                                : "logo-hover"
+                                        }
+                                        src="https://img.icons8.com/fluency-systems-regular/48/edit-product.png"
+                                        alt="edit-product"
+                                    />
                                 </Nav.Link>
                             ) : (
                                 <></>
@@ -173,7 +211,16 @@ const Header = () => {
                                               }
                                     }
                                 >
-                                    Super Admin
+                                    <img
+                                        width="27"
+                                        class={
+                                            theme === "dark"
+                                                ? "logo-dark logo-hover"
+                                                : "logo-hover"
+                                        }
+                                        src="https://img.icons8.com/fluency-systems-regular/48/edit-user.png"
+                                        alt="edit-user"
+                                    />
                                 </Nav.Link>
                             ) : (
                                 <></>
@@ -181,44 +228,116 @@ const Header = () => {
                         </Nav>
 
                         <Nav className="my-2 my-lg-2 me-3">
-                            <Nav.Link
-                                as={Link}
-                                to="/ingresar"
-                                style={
-                                    theme === "dark"
-                                        ? {
-                                              color: "#ffffff",
-                                          }
-                                        : {
-                                              color: "#000000",
-                                          }
-                                }
-                            >
-                                Ingresar
-                            </Nav.Link>
-                            <Nav.Link
-                                as={Link}
-                                to="/cart"
-                                style={
-                                    theme === "dark"
-                                        ? {
-                                              color: "#ffffff",
-                                          }
-                                        : {
-                                              color: "#000000",
-                                          }
-                                }
-                            >
-                                Carrito
-                            </Nav.Link>
+                            {authService.isLoggedIn() === true ? (
+                                <>
+                                    <Nav.Link
+                                        as={Link}
+                                        to="/cart"
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        <img
+                                            class={
+                                                theme === "dark"
+                                                    ? "logo-dark logo-hover"
+                                                    : "logo-hover"
+                                            }
+                                            width="27"
+                                            src="https://img.icons8.com/fluency-systems-regular/48/shopping-cart--v1.png"
+                                            alt="shopping-cart--v1"
+                                        />
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        as={Link}
+                                        to="/sales"
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        <img
+                                            class={
+                                                theme === "dark"
+                                                    ? "logo-dark logo-hover"
+                                                    : "logo-hover"
+                                            }
+                                            width="27"
+                                            src="https://img.icons8.com/fluency-systems-regular/48/shopping-mall.png"
+                                            alt="shopping-mall"
+                                        />
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        onClick={logOut}
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        <img
+                                            class={
+                                                theme === "dark"
+                                                    ? "logo-dark logo-hover"
+                                                    : "logo-hover"
+                                            }
+                                            width="27"
+                                            src="https://img.icons8.com/fluency-systems-regular/48/exit--v1.png"
+                                            alt="exit--v1"
+                                        />
+                                    </Nav.Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Nav.Link
+                                        as={Link}
+                                        to="/ingresar"
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        <img
+                                            width="31"
+                                            class={
+                                                theme === "dark"
+                                                    ? "logo-dark logo-hover"
+                                                    : "logo-hover"
+                                            }
+                                            src="https://img.icons8.com/fluency-systems-regular/48/enter-2.png"
+                                            alt="enter-2"
+                                        />
+                                    </Nav.Link>
+                                </>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
-                    <div className="themeSwitch">
-                        <ThemeSwitch />
-                    </div>
                 </Container>
             </Navbar>
-        </>
+            {/* <div className="themeSwitch">
+                <ThemeSwitch />
+            </div> */}
+        </div>
     );
 };
 

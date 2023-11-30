@@ -29,3 +29,13 @@ p {
     filter: invert(100%) sepia(0%) saturate(4848%) hue-rotate(9deg)
         brightness(116%) contrast(94%);
 }
+
+.logo-dark {
+    filter: invert(100%) sepia(0%) saturate(4848%) hue-rotate(9deg)
+        brightness(116%) contrast(94%);
+}
+
+.logo-hover:hover {
+    filter: invert(46%) sepia(65%) saturate(761%) hue-rotate(185deg)
+        brightness(99%) contrast(93%);
+}

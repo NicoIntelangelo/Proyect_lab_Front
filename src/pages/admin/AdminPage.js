@@ -19,7 +19,7 @@ const AdminPage = ({ children }) => {
                 }
             >
                 <div className="ap-sub-container">
-                    <h1 className="">AdminPage</h1>
+                    <h1 className="">Gestión de productos</h1>
                     {children}
                 </div>
             </div>

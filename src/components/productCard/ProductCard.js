@@ -46,9 +46,7 @@ const ProductCard = ({ price, discount, brand, productName, image, id }) => {
                     <h4 className="price-no-discount">${price.toFixed(2)}</h4>
                 </>
             )}
-            {role === 0 ? (
-                <></>
-            ) : (
+            {role === 2 || role === 1 ? (
                 <div className="buy-button">
                     <Button
                         className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
@@ -57,6 +55,8 @@ const ProductCard = ({ price, discount, brand, productName, image, id }) => {
                         Editar
                     </Button>
                 </div>
+            ) : (
+                <></>
             )}
         </div>
     );
