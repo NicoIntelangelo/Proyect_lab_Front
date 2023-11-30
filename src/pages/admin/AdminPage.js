@@ -15,7 +15,7 @@ const AdminPage = ({ children }) => {
   const handleDownloadPdf = () => {
     setDownloadInProgress(true);
 
-    fetch("https://localhost:7254/informe/products", {
+    fetch(BACK_END_URL + "/informe/products", {
       method: "GET",
     })
       .then((response) => {
