@@ -40,7 +40,7 @@ const CardSlider = ({ children }) => {
   return (
     <>
       <Swiper
-        className={theme === "dark" ? "swiper-dark" : "swiper"}
+        className="swiper"
         modules={[Navigation, Pagination, Keyboard]}
         slidesPerView={slides}
         spaceBetween={0}
