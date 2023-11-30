@@ -10,7 +10,7 @@ const SalesCard = ({ sale }) => {
     const fechaCompra = new Date(sale.saleDate);
     const fechaFormateada = format(fechaCompra, "dd/MM/yyyy");
 
-    console.log(sale.products);
+    //console.log(sale.products);
 
     return (
         <div

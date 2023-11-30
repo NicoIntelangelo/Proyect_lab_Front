@@ -44,7 +44,7 @@ const CartComponent = () => {
 
     var products_ids = cart.map((product) => product.id);
 
-    console.log(products_ids);
+    //console.log(products_ids);
 
     const addSale = async () => {
         try {

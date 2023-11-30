@@ -1,3 +1,3 @@
-const BACK_END_URL = "https://e-commerce1.somee.com";
+const BACK_END_URL = "http://www.kongo.somee.com";
 
 export default BACK_END_URL;

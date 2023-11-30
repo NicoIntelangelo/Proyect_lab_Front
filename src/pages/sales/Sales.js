@@ -7,6 +7,7 @@ import "./Sales.css";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { useContext } from "react";
 import Spinner1 from "../../components/spinner/Spinner1";
+import BACK_END_URL from "../../assets/BackendUrl";
 
 const Sales = () => {
     const { theme } = useContext(ThemeContext);
@@ -18,7 +19,7 @@ const Sales = () => {
 
         const fetchData = async () => {
             try {
-                const response = await fetch("https://localhost:7254/sale", {
+                const response = await fetch(BACK_END_URL + "/sale", {
                     headers: {
                         Accept: "application/json",
                         Authorization: `Bearer ${
