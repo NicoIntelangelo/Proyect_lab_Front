@@ -33,10 +33,10 @@ const ProductDetail = () => {
         setShowAlert(false);
     };
 
-    const handleClose = () => {
-        setShowAlert(false);
-        navigate("/shop/all");
-    };
+    // const handleClose = () => {
+    //     setShowAlert(false);
+    //     navigate("/shop/all");
+    // };
 
     //////////////////////////////////////////////////////////////////////////
 
