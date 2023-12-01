@@ -72,7 +72,7 @@ const EditAdmin = () => {
                 //setAdmins(admins);
                 if (admins) {
                     admins.forEach((admin) => {
-                        if (admin.id === editAdminId) {
+                        if (admin.id === parseInt(editAdminId)) {
                             setAdminName(admin.name);
                             setAdminDirection(admin.direction);
                         }
@@ -80,7 +80,7 @@ const EditAdmin = () => {
                 }
             })
             .catch((error) => console.log(error));
-    }, [editAdminId]);
+    });
 
     const editAdminHandler = async () => {
         try {
