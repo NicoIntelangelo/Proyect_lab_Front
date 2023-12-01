@@ -1,0 +1,20 @@
+.admin-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+
+  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+  box-shadow: 3px 3px 10px 3px #dddddd;
+
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+.admin-name {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.edit-admin-button {
+  margin: 0;
+}

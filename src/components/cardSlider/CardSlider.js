@@ -11,12 +11,8 @@ import "./CardSlider.css";
 
 // import required modules
 import { Navigation, Pagination, Keyboard } from "swiper/modules";
-import { useContext } from "react";
-import { ThemeContext } from "../../services/theme/theme.context";
 
 const CardSlider = ({ children }) => {
-  const { theme } = useContext(ThemeContext);
-
   const width = window.innerWidth;
   var slides = 0;
 

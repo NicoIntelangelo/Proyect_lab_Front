@@ -1,0 +1,19 @@
+.edit-admin-container {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+
+  height: auto;
+  width: 350px;
+
+  margin-bottom: 50px;
+}
+.admin-edit-field {
+  margin-top: 20px;
+}
+.delete-item {
+  color: rgb(255, 0, 0);
+}
+.delete-item:hover {
+  color: white;
+}

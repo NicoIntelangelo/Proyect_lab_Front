@@ -1,19 +1,22 @@
 .sap-container {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 
-    height: auto;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .sap-container-dark {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
-
+.sap-sub-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}

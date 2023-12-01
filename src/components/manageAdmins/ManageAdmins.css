@@ -1,0 +1,21 @@
+.manage-container {
+  height: auto;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 25px;
+
+  width: 600px;
+}
+
+.list-admins-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  margin: 0px 0px 40px 0px;
+}
+
+@media (max-width: 617px) {
+  .manage-container {
+    width: 400px;
+  }
+}
