@@ -80,7 +80,7 @@ const EditAdmin = () => {
                 }
             })
             .catch((error) => console.log(error));
-    });
+    }, [params]);
 
     const editAdminHandler = async () => {
         try {
