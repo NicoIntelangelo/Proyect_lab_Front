@@ -1,107 +1,114 @@
 .pd-container {
-  display: flex;
-  padding: 100px 50px;
+    display: flex;
+    padding: 100px 50px;
 }
 
 .pd-container-dark {
-  background-color: #000000;
-  color: white;
-  display: flex;
-  padding: 100px 50px;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    padding: 100px 50px;
+}
+
+.charge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Estilos para la información del producto */
 .pd-info {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si es necesario */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas si es necesario */
 }
 
 .label-talles {
-  text-align: left;
-  margin-top: 20px;
+    text-align: left;
+    margin-top: 20px;
 }
 
 .radio-group {
-  background-color: black;
+    background-color: black;
 }
 
 .button-add-to-cart {
-  max-width: 150px;
+    max-width: 150px;
 }
 
 @media (max-width: 816px) {
-  .pd-details {
-    align-items: center;
-  }
+    .pd-details {
+        align-items: center;
+    }
 }
 
 /* Estilos para el tema oscuro */
 .dark-theme {
-  background-color: #000000;
-  color: #ffffff;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 /* Estilos para la imagen del producto */
 .pd-image {
-  width: auto;
-  min-height: 150px;
-  max-height: 500px;
-  border-radius: 10px;
-  margin: auto;
-  margin-bottom: 20px;
+    width: auto;
+    min-height: 150px;
+    max-height: 500px;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 /* Reducción del tamaño de la imagen en un 25% */
 .pd-image img {
-  width: 100%;
-  border-radius: 10px;
+    width: 100%;
+    border-radius: 10px;
 }
 
 /* Estilos para los detalles del producto */
 .pd-details {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
 }
 
 /* Estilos para la categoría del producto */
 .pd-category {
-  font-size: 18px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: 100;
 }
 
 /* Estilos para el título del producto */
 .pd-name {
-  font-size: 24px;
-  margin: 0px 0px 10px 0px;
-  color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
+    font-size: 33px;
+    margin: 0px 0px 10px 0px;
+    color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
 }
 
 /* Estilos específicos para los tipos de talles en tema oscuro */
 .dark-theme .pd-details .next-radio input[type="radio"] {
-  background-color: #000000; /* Fondo negro para los radios en tema oscuro */
-  border-color: #ffffff; /* Bordes blancos para los radios en tema oscuro */
-  color: #ffffff; /* Texto blanco para los radios en tema oscuro */
+    background-color: #000000; /* Fondo negro para los radios en tema oscuro */
+    border-color: #ffffff; /* Bordes blancos para los radios en tema oscuro */
+    color: #ffffff; /* Texto blanco para los radios en tema oscuro */
 }
 
 /* Estilos para el precio del producto */
 .pd-price {
-  margin: 10px 0px;
-  color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
-  font-weight: 600;
+    font-size: 33px;
+    color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
+    font-weight: 100;
 }
 
 /* Estilos para el mensaje de la talla seleccionada */
 .pd-talla-message {
-  margin-top: 10px; /* Ajusta el margen superior según sea necesario */
-  color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
-  text-align: center; /* Centra el texto */
-  display: flex; /* Usa flexbox para centrar verticalmente */
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
+    margin-top: 5px; /* Ajusta el margen superior según sea necesario */
+    color: inherit; /* Hereda el color del tema padre (oscuro o claro) */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+    display: flex; /* Usa flexbox para centrar verticalmente */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
 }

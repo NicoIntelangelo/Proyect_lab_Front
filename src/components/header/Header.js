@@ -2,7 +2,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import ThemeSwitch from "../themeSwitch/ThemeSwitch";
 
 import "./Header.css";
 import { ThemeContext } from "../../services/theme/theme.context";
@@ -13,6 +12,8 @@ import { RoleContext } from "../../services/authentication/role.context";
 import AuthService from "../../services/authentication/auth.service";
 import { useState } from "react";
 import { useEffect } from "react";
+import AlertComponent from "../alertComponent/AlertComponent";
+import { Button } from "@nextui-org/react";
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
@@ -27,15 +28,53 @@ const Header = () => {
     }, [role]);
 
     const logOut = () => {
+        setShowAlert(false);
         authService.resetSession();
         setRole(-1);
         setRenderKey(renderKey + 1);
         navigate("/home");
     };
+    const logOutCheck = () => {
+        showAlertWithMessageAction("Seguro que desea salir?", "Salir");
+    };
+
+    //////////////////////////////////////////////////////////////////////////////
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertButtonMessage, setAlertButtonMessage] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+
+    const showAlertWithMessageAction = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlert(true);
+    };
+
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
+    //////////////////////////////////////////////////////////////////////////
 
     //console.log("header");
     return (
         <div>
+            <div>
+                {showAlert && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    >
+                        <Button
+                            radius="full"
+                            className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
+                            onClick={logOut}
+                        >
+                            Salir
+                        </Button>
+                    </AlertComponent>
+                )}
+            </div>
             <Navbar
                 style={
                     theme === "dark"
@@ -279,7 +318,7 @@ const Header = () => {
                                         />
                                     </Nav.Link>
                                     <Nav.Link
-                                        onClick={logOut}
+                                        onClick={logOutCheck}
                                         style={
                                             theme === "dark"
                                                 ? {
@@ -342,5 +381,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// hasta 640 hacer que se cambie por un desplegable

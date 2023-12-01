@@ -18,6 +18,7 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
     const [alertMessage, setAlertMessage] = useState("");
     const [alertButtonMessage, setAlertButtonMessage] = useState("");
     const [showAlert, setShowAlert] = useState(false);
+    const [showAlertWhitButton, setShowAlertWhitButton] = useState(false);
 
     const showAlertWithMessage = (message, buttonMessage) => {
         setAlertMessage(message);
@@ -25,8 +26,19 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
         setShowAlert(true);
     };
 
+    const showAlertWithMessageAction = (message, buttonMessage) => {
+        setAlertMessage(message);
+        setAlertButtonMessage(buttonMessage);
+        setShowAlertWhitButton(true);
+    };
+
     const closeAlert = () => {
         setShowAlert(false);
+    };
+
+    const handleNavigate = () => {
+        setShowAlertWhitButton(false);
+        toggleRegisterLogin();
     };
 
     //////////////////////////////////////////////////////////////////////////
@@ -67,6 +79,18 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
     };
     const addUserHandler = async () => {
         try {
+            if (
+                email.length <= 0 ||
+                userName.length <= 0 ||
+                password.length <= 0 ||
+                direction.length <= 0
+            ) {
+                showAlertWithMessage(
+                    "Debe Completar todos los campos",
+                    "Volver"
+                );
+                return false;
+            }
             if (password !== passwordConfirm) {
                 showAlertWithMessage(
                     "Las Contraseñas no coinciden intentelo nuevamente",
@@ -91,9 +115,14 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
             if (response.ok) {
                 const user = await response.json();
                 console.log(user, response.status);
-                showAlertWithMessage("Se a registrado con exito", "Continuar");
                 clearForm();
+                showAlertWithMessageAction(
+                    "Se a registrado con exito",
+                    "Ingresar"
+                );
                 return user;
+            } else if (response.status === 400) {
+                showAlertWithMessage("El email ya esta en uso", "Volver");
             } else {
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
@@ -103,7 +132,7 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
                 "Volver"
             );
 
-            console.log(error);
+            console.log(error.message);
         }
     };
 
@@ -124,6 +153,23 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
                         buttonMessage={alertButtonMessage}
                         onClose={closeAlert}
                     />
+                )}
+            </div>
+            <div>
+                {showAlertWhitButton && (
+                    <AlertComponent
+                        message={alertMessage}
+                        buttonMessage={alertButtonMessage}
+                        onClose={closeAlert}
+                    >
+                        <Button
+                            radius="full"
+                            className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button"
+                            onClick={handleNavigate}
+                        >
+                            Continuar
+                        </Button>
+                    </AlertComponent>
                 )}
             </div>
             <h2>Registrarse</h2>

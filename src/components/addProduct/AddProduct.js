@@ -258,7 +258,7 @@ export const AddProduct = () => {
                         onValueChange={setSizesList}
                         orientation="horizontal"
                     ></CheckboxGroup>
-                ) : category === "zapatillas" ? (
+                ) : category === "pantalones" ? (
                     <CheckboxGroup
                         label="Seleccione talles disponibles"
                         color="primary"
@@ -266,17 +266,12 @@ export const AddProduct = () => {
                         onValueChange={setSizesList}
                         orientation="horizontal"
                     >
-                        <Checkbox value="35">35</Checkbox>
                         <Checkbox value="36">36</Checkbox>
-                        <Checkbox value="37">37</Checkbox>
                         <Checkbox value="38">38</Checkbox>
-                        <Checkbox value="39">39</Checkbox>
                         <Checkbox value="40">40</Checkbox>
-                        <Checkbox value="41">41</Checkbox>
                         <Checkbox value="42">42</Checkbox>
-                        <Checkbox value="43">43</Checkbox>
                         <Checkbox value="44">44</Checkbox>
-                        <Checkbox value="45">45</Checkbox>
+                        <Checkbox value="46">46</Checkbox>
                     </CheckboxGroup>
                 ) : (
                     <CheckboxGroup

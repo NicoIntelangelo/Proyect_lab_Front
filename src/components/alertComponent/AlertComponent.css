@@ -20,6 +20,14 @@
     position: relative;
     border-radius: 10px;
 
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto 40px;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+
     background-color: #ffffff;
     color: #000000;
 
@@ -49,4 +57,15 @@
 
 .close:hover {
     color: red;
+}
+
+.alert-message {
+    grid-row: 1;
+    grid-column: span 2;
+    text-align: center;
+}
+
+.alert-button {
+    grid-row: 2;
+    grid-column: span 2;
 }
