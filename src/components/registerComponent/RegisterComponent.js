@@ -121,7 +121,8 @@ const RegisterComponent = ({ toggleRegisterLogin }) => {
                     "Ingresar"
                 );
                 return user;
-            } else if (response.status === 400) {
+            }
+            if (response.status === 400) {
                 showAlertWithMessage("El email ya esta en uso", "Volver");
             } else {
                 throw new Error("La respuesta del servidor no fue exitosa");
