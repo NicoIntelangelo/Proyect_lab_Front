@@ -99,17 +99,13 @@ const LogInComponent = ({ toggleRegisterLogin, authentication }) => {
                 return token;
             } else {
                 showAlertWithMessage(
-                    "Hubo un problema al intentar ingresar, intentar nuevamente",
+                    "Los datos ingresados no coinciden con ningún usuario activo.",
                     "Volver"
                 );
                 throw new Error("La respuesta del servidor no fue exitosa");
             }
         } catch (error) {
             console.log(error);
-            showAlertWithMessage(
-                "Hubo un problema al intentar ingresar, intentar nuevamente",
-                "Volver"
-            );
         }
     };
 

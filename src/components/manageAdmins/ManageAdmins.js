@@ -62,7 +62,7 @@ const ManageAdmins = () => {
                       }
             }
         >
-            <h2 className="list-admins-title ">Lista de Admins</h2>
+            <h2 className="list-admins-title ">Lista de administradores</h2>
             {adminList.length > 0 ? (
                 <div>
                     {adminList.map((admin) => (
@@ -76,7 +76,7 @@ const ManageAdmins = () => {
                         onClick={addAdminHandler}
                         className="button bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg"
                     >
-                        Agregar nuevo admin
+                        Agregar nuevo administrador
                     </Button>
                 </div>
             ) : (

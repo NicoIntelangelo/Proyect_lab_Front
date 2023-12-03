@@ -6,6 +6,7 @@ import { RoleContext } from "../../services/authentication/role.context";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import BACK_END_URL from "../../assets/BackendUrl";
+import { Button } from "@nextui-org/react";
 
 const AdminPage = ({ children }) => {
     const { theme } = useContext(ThemeContext);
@@ -50,15 +51,22 @@ const AdminPage = ({ children }) => {
                 }
             >
                 <div className="ap-sub-container">
-                    <h1 className="">AdminPage</h1>
+                    <h1 className="">Administrar Productos</h1>
                     {children}
-                    <button
-                        className="download-pdf-button"
+                    <Button
+                        radius="full"
+                        className="col-span-2 col-5 bg-gradient-to-tr from-blue-500 to-light-blue-500 text-white shadow-lg button download-pdf-button"
+                        // className="download-pdf-button"
                         onClick={handleDownloadPdf}
                         disabled={downloadInProgress}
                     >
-                        Descargar Informe de Productos
-                    </button>
+                        <img
+                            width="37"
+                            src="https://img.icons8.com/fluency-systems-regular/48/export-pdf-2.png"
+                            alt="export-pdf-2"
+                            class={theme === "dark" ? "logo-dark" : ""}
+                        />
+                    </Button>
                 </div>
             </div>
         );

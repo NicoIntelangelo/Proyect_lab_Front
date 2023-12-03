@@ -14,7 +14,6 @@ import {
 } from "@nextui-org/react";
 import { useEffect } from "react";
 import BACK_END_URL from "../../assets/BackendUrl";
-//import { editableInputTypes } from "@testing-library/user-event/dist/utils";
 import "./EditAdmin.css";
 import AuthService from "../../services/authentication/auth.service";
 
