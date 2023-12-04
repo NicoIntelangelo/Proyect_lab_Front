@@ -1,4 +1,4 @@
-# React E-Commerce Application README
+# React E-Commerce Application 
 
 ## Project Overview
 
