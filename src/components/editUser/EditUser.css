@@ -1,0 +1,50 @@
+.eu-container {
+    min-height: 90vh;
+
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+.eu-container-dark {
+    background-color: black;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+.eu-sub-container {
+    margin-top: 30px;
+    width: 350px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    padding: 15px;
+
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.eu-sub-container-dark {
+    border-color: rgb(255, 255, 255);
+}
+
+.eu-title {
+    margin-top: 10px;
+}
+
+.eu-name {
+    margin-top: 10px;
+}
+
+.eu-direction {
+    margin-top: 10px;
+}
+
+.eu-button {
+    margin-top: 10px;
+}

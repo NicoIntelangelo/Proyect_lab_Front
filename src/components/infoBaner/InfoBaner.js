@@ -9,13 +9,13 @@ const InfoBaner = () => {
                 <p>En compras superiores a $60.000</p>
             </div>
             <div className="c2">
+                <h3>6 Cuotas sin interes</h3>
+                <p>Con todas las tarjetas</p>
+            </div>
+            {/* <div className="c3">
                 <h3>Envio Gratis</h3>
                 <p>En compras superiores a $60.000</p>
-            </div>
-            <div className="c3">
-                <h3>Envio Gratis</h3>
-                <p>En compras superiores a $60.000</p>
-            </div>
+            </div> */}
         </div>
     );
 };

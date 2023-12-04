@@ -318,6 +318,30 @@ const Header = () => {
                                         />
                                     </Nav.Link>
                                     <Nav.Link
+                                        as={Link}
+                                        to="/user"
+                                        style={
+                                            theme === "dark"
+                                                ? {
+                                                      color: "#ffffff",
+                                                  }
+                                                : {
+                                                      color: "#000000",
+                                                  }
+                                        }
+                                    >
+                                        <img
+                                            class={
+                                                theme === "dark"
+                                                    ? "logo-dark logo-hover"
+                                                    : "logo-hover"
+                                            }
+                                            width="27"
+                                            src="https://img.icons8.com/fluency-systems-regular/48/edit-user.png"
+                                            alt="edit-user"
+                                        />
+                                    </Nav.Link>
+                                    <Nav.Link
                                         onClick={logOutCheck}
                                         style={
                                             theme === "dark"
